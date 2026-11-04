@@ -52,7 +52,7 @@ app/
 |       ├── mention.js
 |       └── voice.js
 ├── templates/
-|   ├── base.html           # Base layout with Aurora branding, auth nav & status chips
+|   ├── base.html           # Base layout
 |   ├── agents
 |   ├── auth
 |   ├── dashboard
