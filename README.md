@@ -28,7 +28,7 @@ Create Team → Project → Task → Clone Agent → Run Agent → chat reply wi
 <p align="center"><img src="./Docs/images/tasks.jpeg" alt="tasks" width="500"></p>
 <p align="center"><img src="./Docs/images/TeamProjects.jpeg" alt="TeamProjects" width="500"></p>
 <p align="center"><img src="./Docs/images/tasks.jpeg" alt="tasks" width="500"></p>
-<p align="center"><img src="./Docs/images/Bot#1002_job.png" alt="TeamProjects" width="500"></p>
+<p align="center"><img src="./Docs/images/Bot_1002_job.png" alt="work" width="500"></p>
 
 ## 🗂️ Project Structure
 
