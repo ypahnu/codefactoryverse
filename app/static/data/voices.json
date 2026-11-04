@@ -1,0 +1,417 @@
+[
+  {
+    "id": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+    "name": "Skylar",
+    "description": "Approachable American female ideal for customer care and support.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Friendly Guide",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "central-tamil",
+        "locale": "ta-IN",
+        "is_native": false
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+    "name": "Daniel",
+    "description": "Clear, crisp male voice for digital assistants and system interactions",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Modern Assistant",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "modern-standard-arabic",
+        "locale": "ar-SA",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": false
+      },
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": false
+      },
+      {
+        "accent": "southern-karnataka",
+        "locale": "kn-IN",
+        "is_native": false
+      },
+      {
+        "accent": "korean",
+        "locale": "ko-KR",
+        "is_native": false
+      },
+      {
+        "accent": "konkani",
+        "locale": "mr-IN",
+        "is_native": false
+      },
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "central-tamil",
+        "locale": "ta-IN",
+        "is_native": false
+      },
+      {
+        "accent": "telangana",
+        "locale": "te-IN",
+        "is_native": false
+      },
+      {
+        "accent": "central-thai",
+        "locale": "th-TH",
+        "is_native": false
+      },
+      {
+        "accent": "manila",
+        "locale": "tl-PH",
+        "is_native": false
+      },
+      {
+        "accent": "urdu",
+        "locale": "ur-PK",
+        "is_native": false
+      },
+      {
+        "accent": "mandarin",
+        "locale": "zh-CN",
+        "is_native": false
+      },
+      {
+        "accent": "taiwanese-mandarin",
+        "locale": "zh-TW",
+        "is_native": false
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+    "name": "Gemma",
+    "description": "Confident, emotive British female for professional assistance",
+    "gender": "feminine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Decisive Agent",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": true
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "30894953-bcce-41fe-892c-15ce19c843ff",
+    "name": "Parker",
+    "description": "Casual, supportive warmth for friendly conversational flows and approachable check-ins.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Supportive Pal",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+    "name": "Archie",
+    "description": "Warm, conversational British male for casual and engaging dialogue.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Approachable Mate",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": true
+      },
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": false
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": false
+      },
+      {
+        "accent": "modern-standard-arabic",
+        "locale": "ar-SA",
+        "is_native": false
+      },
+      {
+        "accent": "bulgarian",
+        "locale": "bg-BG",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": false
+      },
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": false
+      },
+      {
+        "accent": "southern-karnataka",
+        "locale": "kn-IN",
+        "is_native": false
+      },
+      {
+        "accent": "korean",
+        "locale": "ko-KR",
+        "is_native": false
+      },
+      {
+        "accent": "konkani",
+        "locale": "mr-IN",
+        "is_native": false
+      },
+      {
+        "accent": "oslo",
+        "locale": "no-NO",
+        "is_native": false
+      },
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "central-tamil",
+        "locale": "ta-IN",
+        "is_native": false
+      },
+      {
+        "accent": "telangana",
+        "locale": "te-IN",
+        "is_native": false
+      },
+      {
+        "accent": "central-thai",
+        "locale": "th-TH",
+        "is_native": false
+      },
+      {
+        "accent": "manila",
+        "locale": "tl-PH",
+        "is_native": false
+      },
+      {
+        "accent": "urdu",
+        "locale": "ur-PK",
+        "is_native": false
+      },
+      {
+        "accent": "mandarin",
+        "locale": "zh-CN",
+        "is_native": false
+      },
+      {
+        "accent": "taiwanese-mandarin",
+        "locale": "zh-TW",
+        "is_native": false
+      }
+    ],
+    "featured": true
+  }
+]

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}{{ agent.name }} - {{ task.title }}{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <nav class="small text-dim mb-3"><a href="{{ url_for('teams.view', slug=team.slug) }}" class="text-dim text-decoration-none">{{ team.name }}</a> / <a href="{{ url_for('projects.view', team_slug=team.slug, project_slug=project.slug) }}" class="text-dim text-decoration-none">{{ project.name }}</a> / <a href="{{ url_for('tasks.view', team_slug=team.slug, project_slug=project.slug, task_id=task.id) }}" class="text-dim text-decoration-none">{{ task.title }}</a> / <span class="text-white">{{ agent.name }}</span></nav>
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="agent-card p-4 mb-3">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h3 class="fw-bold mb-1"><i class="bi bi-robot"></i> {{ agent.name }}</h3>
+            <p class="text-dim mb-2">{{ agent.role }} • clone of {{ agent.cloned_from }}</p>
+            <span class="badge bg-custom3 border border-custom small">Status: {{ agent.status }}</span> <span class="small text-dim">Created {{ agent.created_at|shortdate }}</span>
+          </div>
+          <div class="d-flex gap-2">
+            <form method="POST" action="{{ url_for('agents.run_agent', team_slug=team.slug, project_slug=project.slug, task_id=task.id, agent_id=agent.id) }}"><button class="btn btn-primary-custom btn-sm"><i class="bi bi-play"></i> Run Agent</button></form>
+            <form method="POST" action="{{ url_for('agents.delete', team_slug=team.slug, project_slug=project.slug, task_id=task.id, agent_id=agent.id) }}" onsubmit="return confirm('Delete?')"><button class="btn btn-ghost btn-sm text-danger"><i class="bi bi-trash"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-custom p-3 mb-3">
+        <h6 class="fw-bold"><i class="bi bi-file-text"></i> System Prompt</h6>
+        <div class="mt-2 p-3 rounded" style="background:#0f0f17;border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:12px;white-space:pre-wrap;max-height:400px;overflow-y:auto;">{{ agent.system_prompt }}</div>
+      </div>
+
+      <div class="card-custom p-3">
+        <h6 class="fw-bold">Agent Timeline in Task</h6>
+        {% for msg in agent_messages %}
+          <div class="p-2 mb-2 rounded" style="background:var(--bg3);border:1px solid var(--border);">
+            <div class="small fw-bold">{{ msg.content[:100] }}</div>
+            <div class="small text-dim" style="font-size:11px;">{{ msg.created_at|shortdate }} • {{ msg.message_type }}</div>
+          </div>
+        {% else %}
+          <p class="small text-dim">No activity yet. Click Run Agent to simulate work.</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card-custom p-3 mb-3">
+        <h6 class="fw-bold mb-3">Skills ({{ skills|length }})</h6>
+        {% for skill in skills %}
+          <div class="d-flex justify-content-between align-items-center mb-2 p-2 rounded" style="background:var(--bg3);">
+            <div><div class="small fw-bold">{{ skill.icon }} {{ skill.name }}</div><div class="small text-dim" style="font-size:11px;">{{ skill.desc }}</div></div>
+            <span class="badge bg-primary">{{ skill.level }}%</span>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="card-custom p-3">
+        <h6 class="small fw-bold">Connected Task</h6>
+        <a href="{{ url_for('tasks.view', team_slug=team.slug, project_slug=project.slug, task_id=task.id) }}" class="text-decoration-none">
+          <div class="p-2 rounded mt-2" style="background:var(--bg3);border:1px solid var(--border);">
+            <div class="small fw-bold text-white">{{ task.title }}</div>
+            <div class="small text-dim">{{ task.description[:60] }}</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

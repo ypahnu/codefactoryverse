@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - CodeFactory{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">Welcome, {{ current_user.display_name or current_user.username }} 👋</h2>
+      <p class="text-dim mb-0">Your factory overview</p>
+    </div>
+    <a href="{{ url_for('teams.create') }}" class="btn btn-primary-custom"><i class="bi bi-plus-lg"></i> New Team</a>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3"><div class="card-custom p-3"><div class="small text-dim">Teams</div><div class="fs-3 fw-bold">{{ stats.teams }}</div></div></div>
+    <div class="col-6 col-md-3"><div class="card-custom p-3"><div class="small text-dim">Projects</div><div class="fs-3 fw-bold">{{ stats.projects }}</div></div></div>
+    <div class="col-6 col-md-3"><div class="card-custom p-3"><div class="small text-dim">Todo</div><div class="fs-3 fw-bold text-warning">{{ stats.tasks_todo }}</div></div></div>
+    <div class="col-6 col-md-3"><div class="card-custom p-3"><div class="small text-dim">Done</div><div class="fs-3 fw-bold text-success">{{ stats.tasks_done }}</div></div></div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0"><i class="bi bi-kanban"></i> Recent Projects</h5>
+        <a href="{{ url_for('teams.index') }}" class="small" style="color: var(--primary);">View all teams →</a>
+      </div>
+      {% if recent_projects %}
+        <div class="row g-3">
+          {% for project in recent_projects %}
+          <div class="col-md-6">
+            <div class="card-custom card-glow h-100">
+              <div class="project-color" style="background: {{ project.color }};"></div>
+              <div class="p-3">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="badge bg-custom3 border border-custom small">{{ project.team.name }}</span>
+                  <span class="small text-dim">{{ project.task_stats().total }} tasks</span>
+                </div>
+                <h6 class="fw-bold mb-1"><a href="{{ url_for('projects.view', team_slug=project.team.slug, project_slug=project.slug) }}" class="text-white text-decoration-none">{{ project.name }}</a></h6>
+                <p class="small text-dim mb-2" style="min-height: 36px;">{{ project.description[:80] if project.description else 'No description' }}</p>
+                <div class="d-flex gap-2">
+                  <span class="small"><span class="badge bg-warning text-dark">{{ project.task_stats().todo }}</span> todo</span>
+                  <span class="small"><span class="badge bg-info">{{ project.task_stats().in_progress }}</span> active</span>
+                  <span class="small"><span class="badge bg-success">{{ project.task_stats().done }}</span> done</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="card-custom p-5 text-center">
+          <div class="mb-3"><i class="bi bi-folder-x" style="font-size: 2rem; opacity: 0.5;"></i></div>
+          <p class="text-dim">No projects yet. Create a team first.</p>
+          <a href="{{ url_for('teams.create') }}" class="btn btn-ghost btn-sm">Create Team</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="col-lg-4">
+      <div class="mb-4">
+        <h6 class="fw-bold mb-3"><i class="bi bi-people"></i> Your Teams</h6>
+        {% for team in teams[:5] %}
+          <a href="{{ url_for('teams.view', slug=team.slug) }}" class="d-flex align-items-center p-2 rounded text-decoration-none mb-1" style="background: var(--bg2); border: 1px solid var(--border);">
+            <div class="team-avatar me-2" style="background: {{ team.avatar_color }}; width:32px;height:32px;font-size:13px;">{{ team.name[0].upper() }}</div>
+            <div class="flex-grow-1"><div class="small fw-bold text-white">{{ team.name }}</div><div class="small text-dim" style="font-size:11px;">{{ team.member_count() }} members • {{ team.project_count() }} projects</div></div>
+          </a>
+        {% else %}
+          <div class="text-dim small">No teams</div>
+        {% endfor %}
+      </div>
+
+      <div class="card-custom p-3">
+        <h6 class="fw-bold"><i class="bi bi-cpu"></i> CodeFactory Prime</h6>
+        <p class="small text-dim">The master agent template. All task agents are clones of this elite agent with 12 core skills.</p>
+        <div class="d-flex flex-wrap gap-1">
+          {% set skills = ["💻 Code", "🏗️ Architecture", "🐛 Debug", "🧪 Test", "🚀 DevOps", "📚 Docs"] %}
+          {% for s in skills %}<span class="skill-badge">{{ s }}</span>{% endfor %}
+        </div>
+        <div class="mt-2 small text-dim">+6 more skills • 93 avg level</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

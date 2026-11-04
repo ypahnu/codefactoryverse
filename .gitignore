@@ -1,0 +1,14 @@
+# Env / secrets
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+
+# DB & runtime data
+*.db
+*.db-shm
+*.db-wal
+uploads/sandbox/
+uploads/voice/

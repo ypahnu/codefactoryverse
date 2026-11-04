@@ -1,0 +1,902 @@
+[
+  {
+    "id": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+    "name": "Skylar",
+    "description": "Approachable American female ideal for customer care and support.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Friendly Guide"
+  },
+  {
+    "id": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+    "name": "Daniel",
+    "description": "Clear, crisp male voice for digital assistants and system interactions",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Modern Assistant"
+  },
+  {
+    "id": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+    "name": "Gemma",
+    "description": "Confident, emotive British female for professional assistance",
+    "gender": "feminine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Decisive Agent"
+  },
+  {
+    "id": "30894953-bcce-41fe-892c-15ce19c843ff",
+    "name": "Parker",
+    "description": "Casual, supportive warmth for friendly conversational flows and approachable check-ins.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Supportive Pal"
+  },
+  {
+    "id": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+    "name": "Archie",
+    "description": "Warm, conversational British male for casual and engaging dialogue.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Approachable Mate"
+  },
+  {
+    "id": "f4d6bb07-f876-4464-ba70-cd48d8701890",
+    "name": "Adriana",
+    "description": "Bright, expressive voice for promotional and entertainment use",
+    "gender": "feminine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Bright Entertainer"
+  },
+  {
+    "id": "498e7f37-7fa3-4e2c-b8e2-8b6e9276f956",
+    "name": "Aiko",
+    "description": "Calm and composed voice for clear, conversational interactions",
+    "gender": "feminine",
+    "language": "ja",
+    "country": "JP",
+    "tagline": "Calming Voice"
+  },
+  {
+    "id": "cc71692b-f326-499b-8f8f-90a415b4d3fb",
+    "name": "Akash",
+    "description": "A composed and articulate tone ideal for delivering organized content, such as educational modules o",
+    "gender": "masculine",
+    "language": "or",
+    "country": "IN",
+    "tagline": "Structured Presenter"
+  },
+  {
+    "id": "c8403b5c-6465-4396-9065-a440d376528a",
+    "name": "Alessio",
+    "description": "This voice offers a calm, precise delivery, ideal for navigating complex inquiries and providing cle",
+    "gender": "masculine",
+    "language": "it",
+    "country": "IT",
+    "tagline": "Clear Anchor"
+  },
+  {
+    "id": "0528c162-5439-4dde-a4b8-a3a9cb62edf5",
+    "name": "Alia",
+    "description": "A poised and articulate voice, providing seamless assistance and refined instruction for digital int",
+    "gender": "feminine",
+    "language": "ar",
+    "country": "SA",
+    "tagline": "Poised Host"
+  },
+  {
+    "id": "9904416a-0831-44ea-b8ee-5f145e8f9bbf",
+    "name": "Alice",
+    "description": "Delivers information with measured clarity and a helpful tone, well-suited for service-oriented appl",
+    "gender": "feminine",
+    "language": "pt",
+    "country": "BR",
+    "tagline": "Informative Speaker"
+  },
+  {
+    "id": "37eb1575-353e-44f4-855d-894b4f003642",
+    "name": "Alok",
+    "description": "Delivers information with precise clarity and a reassuring presence, ideal for guiding listeners thr",
+    "gender": "masculine",
+    "language": "or",
+    "country": "IN",
+    "tagline": "Clear Navigator"
+  },
+  {
+    "id": "12e85709-099c-480a-ba3e-875c41a9611a",
+    "name": "Arlo",
+    "description": "Arlo's friendly, mid-toned Australian voice is excellent for customer support, offering clear and he",
+    "gender": "masculine",
+    "language": "en",
+    "country": "AU",
+    "tagline": "Service Specialist"
+  },
+  {
+    "id": "41e97793-a58d-40b7-8430-83465e186f94",
+    "name": "Aryan",
+    "description": "This voice offers a calm and meticulous approach, perfect for ensuring accuracy and guiding through ",
+    "gender": "masculine",
+    "language": "ur",
+    "country": "IN",
+    "tagline": "Order Verifier"
+  },
+  {
+    "id": "1fcd23d0-bf12-4896-8f60-4f21ef5c9b98",
+    "name": "Austin",
+    "description": "Reliable and approachable guide for dependable everyday assistance.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Conversational Guide"
+  },
+  {
+    "id": "ebc02c0d-61fd-48f2-a6c9-0d6683b7d466",
+    "name": "Ayala",
+    "description": "Ayala's expressive yet controlled delivery makes her perfect for engaging narrations and insightful ",
+    "gender": "feminine",
+    "language": "he",
+    "country": "IL",
+    "tagline": "Expert Narrator"
+  },
+  {
+    "id": "5def377d-908b-4540-8bd7-3c968fcae351",
+    "name": "Beno\u00eet",
+    "description": "Clear, methodical French male for professional customer assistance.",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Methodical Moderator"
+  },
+  {
+    "id": "5241b0aa-3c09-479d-b0b8-a6ec68daef5e",
+    "name": "Brielle",
+    "description": "Brielle delivers engaging renewal partner narration with professional pacing and a friendly presence",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Renewal Partner"
+  },
+  {
+    "id": "391f4c0a-f1a8-4c21-9aa2-7a07f0a4b0dc",
+    "name": "Bronte",
+    "description": "Bright and trustworthy Australian voice provides approachable guidance, making her excellent for cus",
+    "gender": "feminine",
+    "language": "en",
+    "country": "AU",
+    "tagline": "Trusted Guide"
+  },
+  {
+    "id": "86e30c1d-714b-4074-a1f2-1cb6b552fb49",
+    "name": "Carson",
+    "description": "Friendly young adult male for customer support conversations",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Curious Conversationalist"
+  },
+  {
+    "id": "e8e5fffb-252c-436d-b842-8879b84445b6",
+    "name": "Cathy",
+    "description": "Nice, young adult female for casual conversations",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Coworker"
+  },
+  {
+    "id": "ad38904c-0ce9-42b1-9159-5ad5352ef089",
+    "name": "Celia",
+    "description": "With a thoughtful and analytical tone, this voice simplifies issues and provides actionable insights",
+    "gender": "feminine",
+    "language": "es",
+    "country": "ES",
+    "tagline": "Practical Analyst"
+  },
+  {
+    "id": "4b5112be-c461-44a2-a66b-0dd7f98db4a0",
+    "name": "Cesar",
+    "description": "With steady clarity and warmth, Cesar fits service specialist use cases that need confident delivery",
+    "gender": "masculine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Friendly Server"
+  },
+  {
+    "id": "57a3a9e0-a91c-4c94-a2bb-e6cbab3ae649",
+    "name": "Clemens",
+    "description": "This voice offers clear, articulate guidance, perfect for detailed instructions and educational cont",
+    "gender": "masculine",
+    "language": "de",
+    "country": "DE",
+    "tagline": "Precise Instructor"
+  },
+  {
+    "id": "b24f41fd-00a3-4cd8-992a-a0c9f13f3ef1",
+    "name": "Clive",
+    "description": "Offers a composed and articulate voice, perfect for delivering educational content or detailed advic",
+    "gender": "masculine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Measured Expert"
+  },
+  {
+    "id": "c46cf1f6-49a1-4d67-9a57-ff859a4046d3",
+    "name": "Cora",
+    "description": "Cora offers a helpful and articulate tone, perfectly suited for customer support and service-oriente",
+    "gender": "feminine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Service Specialist"
+  },
+  {
+    "id": "630ed21c-2c5c-41cf-9d82-10a7fd668370",
+    "name": "Corey",
+    "description": "Inviting, cheerful young adult male for casual conversation.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Supportive Buddy"
+  },
+  {
+    "id": "35b2cfc1-e6fb-4d69-a598-c1780612be4a",
+    "name": "Dar\u00edo",
+    "description": "Delivering with steady confidence and a composed tone, this voice excels in professional advising an",
+    "gender": "masculine",
+    "language": "es",
+    "country": "ES",
+    "tagline": "Steady Operator"
+  },
+  {
+    "id": "00e9ec78-2002-41dd-8d19-6b1d3b17a461",
+    "name": "Elena",
+    "description": "Offers a composed and articulate presence, ideal for fostering understanding and managing client rel",
+    "gender": "feminine",
+    "language": "it",
+    "country": "IT",
+    "tagline": "Client Liaison"
+  },
+  {
+    "id": "2a12b36c-7f9b-4c3a-9f7a-72731b15323a",
+    "name": "Ella",
+    "description": "Approachable presence for bright, lightweight and everyday customer conversations.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "AU",
+    "tagline": "Caring Scout"
+  },
+  {
+    "id": "cb2694c3-715f-4da9-99f3-1c974fff2928",
+    "name": "Elo\u00e1",
+    "description": "A warm and articulate voice, ideal for breaking down complex topics into easily understandable segme",
+    "gender": "feminine",
+    "language": "pt",
+    "country": "BR",
+    "tagline": "Engaging Explainer"
+  },
+  {
+    "id": "b0689631-eee7-4a6c-bb86-195f1d267c2e",
+    "name": "Emilio",
+    "description": "Upbeat voice with a friendly tone for positive customer service interactions",
+    "gender": "masculine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Friendly Optimist"
+  },
+  {
+    "id": "81452d3b-a5f6-4ef4-afff-542182fac725",
+    "name": "Fabiana",
+    "description": "Provides precise and efficient support, ideal for navigating services and tech solutions as a clear ",
+    "gender": "feminine",
+    "language": "pt",
+    "country": "BR",
+    "tagline": "Clear Desk"
+  },
+  {
+    "id": "9d216805-e52e-4b1e-966a-6447df592a5d",
+    "name": "Fabien",
+    "description": "A natural tracking desk style rather than a scripted announcer \u2014 clear, warm, and efficient.",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Tracking Desk"
+  },
+  {
+    "id": "526ab945-9cbf-4bd2-9c72-3833d55d4c68",
+    "name": "Fabio",
+    "description": "This voice offers a composed and articulate delivery, ideal for clear explanations and detailed inst",
+    "gender": "masculine",
+    "language": "it",
+    "country": "IT",
+    "tagline": "Logistics Expert"
+  },
+  {
+    "id": "616c64d7-f541-436b-9b8d-e79cfbe19ef9",
+    "name": "Felipe",
+    "description": "A supportive voice, perfect for guiding users through processes with clarity and ease.",
+    "gender": "masculine",
+    "language": "pt",
+    "country": "BR",
+    "tagline": "Warm Assistant"
+  },
+  {
+    "id": "b4b8e2af-6139-466e-a93a-30c20d2e1fc5",
+    "name": "Fernanda",
+    "description": "Approachable, Mexican female ideal for customer care and support.",
+    "gender": "feminine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Friendly Guide"
+  },
+  {
+    "id": "79d2cf27-444a-4c3a-9eed-2ad5cf795a3b",
+    "name": "Fraser",
+    "description": "Fraser brings a bright and articulate Australian voice, ensuring messages are delivered with precisi",
+    "gender": "masculine",
+    "language": "en",
+    "country": "AU",
+    "tagline": "Trusted Communicator"
+  },
+  {
+    "id": "bcdcad6d-4eb6-4a71-89fd-1ae2ce9f95d8",
+    "name": "Freja",
+    "description": "A bright and articulate voice, ideal for presenting information with clarity and warmth.",
+    "gender": "feminine",
+    "language": "sv",
+    "country": "SE",
+    "tagline": "Informative Host"
+  },
+  {
+    "id": "f5e6c270-2aa9-463f-b48b-579a39284ce2",
+    "name": "F\u00e9lix",
+    "description": "An approachable and steady tone makes this voice ideal for customer service and delivering practical",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Helpful Professional"
+  },
+  {
+    "id": "3a01612e-07da-4a85-bba8-ce10481df477",
+    "name": "Gareth",
+    "description": "Provides a naturally warm and approachable tone, fostering engagement in interactive dialogues and c",
+    "gender": "masculine",
+    "language": "en",
+    "country": "CA",
+    "tagline": "Conversational Specialist"
+  },
+  {
+    "id": "3c1c7da2-8f3f-4966-a76d-1f5e484865b5",
+    "name": "Gonzalo",
+    "description": "Crisp and personable, this hospitable cadence is tailor-made for automated phone menus, dispatch not",
+    "gender": "masculine",
+    "language": "es",
+    "country": "PA",
+    "tagline": "Responsive Attendant"
+  },
+  {
+    "id": "6c756032-11c3-4be8-a120-74f9673fb700",
+    "name": "Harlow",
+    "description": "Offers a friendly yet professional presence, perfect for efficient problem-solving and customer supp",
+    "gender": "feminine",
+    "language": "en",
+    "country": "CA",
+    "tagline": "Warm Support"
+  },
+  {
+    "id": "8a6d0b8e-8cd8-4952-a41e-b7af18662135",
+    "name": "Helena",
+    "description": "An articulate and even-toned presence, enhancing professional communications and informational conte",
+    "gender": "feminine",
+    "language": "pt",
+    "country": "BR",
+    "tagline": "Solution Facilitator"
+  },
+  {
+    "id": "d9f4af15-c402-4f50-bbda-d8823d028d6a",
+    "name": "Henri",
+    "description": "A natural express host style rather than a scripted announcer \u2014 clear, warm, and efficient.",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Express Host"
+  },
+  {
+    "id": "87286a8d-7ea7-4235-a41a-dd9fa6630feb",
+    "name": "Henry",
+    "description": "A relaxed, youthful male voice with a monotone, matter-of-fact attitude - ideal for casual, straight",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Plainspoken Guy"
+  },
+  {
+    "id": "7c58f4a4-a72c-42fa-a503-41b9408820f3",
+    "name": "In\u00e8s",
+    "description": "Confident, articulate French female suited for corporate narration.",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Poised Communicator"
+  },
+  {
+    "id": "a7beff01-8f8b-4809-bfe6-e2166e57e0c2",
+    "name": "Iria",
+    "description": "Her measured and thoughtful delivery creates an engaging experience, perfect for detailed explanatio",
+    "gender": "feminine",
+    "language": "es",
+    "country": "ES",
+    "tagline": "Thoughtful Communicator"
+  },
+  {
+    "id": "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc",
+    "name": "Jacqueline",
+    "description": "Confident, young adult female for empathic customer support",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Reassuring Agent"
+  },
+  {
+    "id": "92579402-6868-412e-b845-3efed0be7a9e",
+    "name": "Jade",
+    "description": "A serene and composed voice that delivers information with steady precision, creating a reassuring a",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Steady Companion"
+  },
+  {
+    "id": "a5136bf9-224c-4d76-b823-52bd5efcffcc",
+    "name": "Jameson",
+    "description": "Friendly, laid-back male voice for customer support and onboarding",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Easygoing Support"
+  },
+  {
+    "id": "25d7abcb-4d6d-4aca-adce-8a1c85620c8b",
+    "name": "Jessica",
+    "description": "Crisp and articulate delivery designed for seamless information sharing.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Clear Communicator"
+  },
+  {
+    "id": "d1d9c946-7cfc-4378-85a4-07d09827cb7e",
+    "name": "Jolene",
+    "description": "Rich, honeyed Southern female perfect for narration.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Warm Storyteller"
+  },
+  {
+    "id": "3b7d569e-01fc-45ef-b74b-29460956c691",
+    "name": "Josette",
+    "description": "Josette's inviting and clear voice offers a friendly presence, perfect for guiding listeners with th",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Frontline Helper"
+  },
+  {
+    "id": "8f1e9d27-96ff-405e-9213-7432a784ac0b",
+    "name": "Jules",
+    "description": "Delivers information with a polished, confident tone, suitable for high-level corporate communicatio",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Polished Host"
+  },
+  {
+    "id": "273f9ef7-9fc2-4def-88bb-ab108c6249ca",
+    "name": "Julia",
+    "description": "Soft, graceful tone with a composed rhythm for polished guidance and reassurance.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Gentle Guide"
+  },
+  {
+    "id": "cb9c954d-bcaa-43ed-82bf-aeb5e88a3cb5",
+    "name": "Kabir",
+    "description": "Offering a composed and structured delivery, this voice seamlessly connects information, perfect for",
+    "gender": "masculine",
+    "language": "hi",
+    "country": "IN",
+    "tagline": "Service Integrator"
+  },
+  {
+    "id": "f786b574-daa5-4673-aa0c-cbe3e8534c02",
+    "name": "Katie",
+    "description": "Enunciating young adult female for conversational support use cases",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Friendly Fixer"
+  },
+  {
+    "id": "1cc00672-e9d4-455e-b3fb-31dfb7aad231",
+    "name": "Laura",
+    "description": "Laura provides a steady and reliable presence, making complex information accessible with her calm, ",
+    "gender": "feminine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Trustworthy Guide"
+  },
+  {
+    "id": "a33f7a4c-100f-41cf-a1fd-5822e8fc253f",
+    "name": "Lauren",
+    "description": "Expressive female voice for narration, storytelling, and creative content",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Lively Narrator"
+  },
+  {
+    "id": "64a941ac-07ac-462c-a81c-008e353dd83e",
+    "name": "Layan",
+    "description": "A composed and precise delivery for conveying complex details and offering clear, actionable insight",
+    "gender": "feminine",
+    "language": "ar",
+    "country": "SA",
+    "tagline": "Clarity Provider"
+  },
+  {
+    "id": "8d673f7e-4a22-47fd-973a-ead9a85b7187",
+    "name": "Lindiwe",
+    "description": "Offers a composed and thoughtful approach, guiding listeners through complex information with ease a",
+    "gender": "feminine",
+    "language": "en",
+    "country": "ZA",
+    "tagline": "Capable Professional"
+  },
+  {
+    "id": "045b0ec6-3bed-4bc8-b797-b90a7bb5b445",
+    "name": "Lise",
+    "description": "Delivering information with a polished, inviting tone, this voice is ideal for seamless client engag",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Service Concierge"
+  },
+  {
+    "id": "0e8d318d-7b5a-49d1-9952-dc265248c12a",
+    "name": "Livia",
+    "description": "This voice combines clarity with a helpful demeanor, advocating for listeners and guiding them throu",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Customer Advocate"
+  },
+  {
+    "id": "f4d8ad0e-ad3a-4c37-b99d-ff28e366781b",
+    "name": "Ludvig",
+    "description": "Provides insightful explanations with a reassuring and helpful demeanor.",
+    "gender": "masculine",
+    "language": "sv",
+    "country": "SE",
+    "tagline": "Insightful Guide"
+  },
+  {
+    "id": "63fdecc2-4e1d-4aa3-a442-27204e3cd3b5",
+    "name": "L\u00e9onie",
+    "description": "An inviting and expressive voice that creates a pleasant atmosphere, ideal for interactive experienc",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Bright Host"
+  },
+  {
+    "id": "8c44acc3-f107-460b-8958-a57ec638eaf5",
+    "name": "L\u00edvia",
+    "description": "Navigates inquiries with a helpful and composed delivery, ensuring a smooth and understanding intera",
+    "gender": "feminine",
+    "language": "pt",
+    "country": "BR",
+    "tagline": "Checkout Guide"
+  },
+  {
+    "id": "2fc4f1ec-bfd0-46f1-8e6d-d4279eaaf838",
+    "name": "Mateo",
+    "description": "Warm, genuine Mexican male perfect for conversational platforms.",
+    "gender": "masculine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Friendly Host"
+  },
+  {
+    "id": "996ec149-0dca-4389-ad08-e2d6f906b4bf",
+    "name": "Mathis",
+    "description": "Presents data and insights with a thoughtful, measured delivery, simplifying detailed analyses for l",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Analytical Explanator"
+  },
+  {
+    "id": "80f117a5-5196-4b64-8b4c-efda3d3ab176",
+    "name": "Ma\u00eblle B",
+    "description": "This voice offers a measured and empathetic delivery, perfect for thoughtful guidance and detailed e",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Care Desk"
+  },
+  {
+    "id": "d7bf7d75-64b7-4c1e-86c0-79d647366587",
+    "name": "Michelle",
+    "description": "Gentle and reassuring tone designed to offer comfort and build trust.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Empathetic Voice"
+  },
+  {
+    "id": "7348f896-8516-4382-9c8f-ad2aee1ffedc",
+    "name": "Naledi",
+    "description": "Naledi offers an engaging and informative tone, ideal for e-learning and clear, comprehensive educat",
+    "gender": "feminine",
+    "language": "en",
+    "country": "ZA",
+    "tagline": "Engaging Instructor"
+  },
+  {
+    "id": "33d406dd-ff6f-4be7-a7f5-8b1ba183b3e4",
+    "name": "Nandi",
+    "description": "A poised and eloquent delivery, ideal for corporate presentations, documentary narration, and sophis",
+    "gender": "feminine",
+    "language": "en",
+    "country": "ZA",
+    "tagline": "Poised Concierge"
+  },
+  {
+    "id": "aa3ccc4a-cfd8-405c-acf5-1873a527b006",
+    "name": "Naoki",
+    "description": "Delivers messages with a polished, articulate tone, perfect for corporate presentations and formal i",
+    "gender": "masculine",
+    "language": "ja",
+    "country": "JP",
+    "tagline": "Polished Professional"
+  },
+  {
+    "id": "d051b675-6863-44cc-b7ba-356858ed7df8",
+    "name": "Nisa",
+    "description": "Delivers information with a composed and knowledgeable tone, perfect for explaining complex processe",
+    "gender": "feminine",
+    "language": "th",
+    "country": "TH",
+    "tagline": "System Navigator"
+  },
+  {
+    "id": "5568a7df-e5ab-4442-9fae-2e9ba1b15ad8",
+    "name": "Quentin",
+    "description": "Polished narrator with a measured pace, perfect for corporate and professional settings",
+    "gender": "masculine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Refined Narrator"
+  },
+  {
+    "id": "f9f9f472-6247-4403-9abe-616f7c407c63",
+    "name": "Raed",
+    "description": "Delivers precise and analytical insights, simplifying complex workflows for clear understanding.",
+    "gender": "masculine",
+    "language": "ar",
+    "country": "SA",
+    "tagline": "Workflow Analyst"
+  },
+  {
+    "id": "cbb6fdf0-30dd-49f6-af7d-bbb1185c1fa5",
+    "name": "Rafael",
+    "description": "A composed and reliable presence, ideal for important updates or detailed instructions with a calm, ",
+    "gender": "masculine",
+    "language": "es",
+    "country": "ES",
+    "tagline": "Poised Advisor"
+  },
+  {
+    "id": "9b67072c-d46c-465d-87dc-f7a1c6db2bf3",
+    "name": "Ramon",
+    "description": "With a measured pace and clear articulation, Ramon brings a professional calm coordinator voice to c",
+    "gender": "masculine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Calm Coordinator"
+  },
+  {
+    "id": "92f27ee5-d8b9-4c0a-a0c2-f401f6ab0a72",
+    "name": "Reem",
+    "description": "Delivers information with assured clarity and a helpful demeanor, perfect for guiding users efficien",
+    "gender": "feminine",
+    "language": "ar",
+    "country": "SA",
+    "tagline": "Solution Provider"
+  },
+  {
+    "id": "5ee9feff-1265-424a-9d7f-8e4d431a12c7",
+    "name": "Ronald",
+    "description": "Intense, deep young adult male for casual conversations",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Thinker"
+  },
+  {
+    "id": "8c254787-4eb4-4577-bd3d-fb3c273baea2",
+    "name": "Rowan",
+    "description": "Provides a reliable and steady vocal presence, ensuring clarity and trust in every piece of communic",
+    "gender": "masculine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Steady Guide"
+  },
+  {
+    "id": "579dc63a-1c19-4512-866a-1295dff18f0f",
+    "name": "Sakura",
+    "description": "This voice offers precise and reassuring information with a composed, articulate delivery, ideal for",
+    "gender": "feminine",
+    "language": "ja",
+    "country": "JP",
+    "tagline": "Precise Host"
+  },
+  {
+    "id": "382109c0-5c85-4fd1-9d94-b3ec07a4486b",
+    "name": "Samuel",
+    "description": "This voice provides clear and precise explanations with a composed and reassuring delivery, ideal fo",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Informative Facilitator"
+  },
+  {
+    "id": "e6b71342-48f1-4c70-a13a-d197b176ff24",
+    "name": "Sana",
+    "description": "With a precise yet friendly delivery, this voice clarifies options and resolves queries effectively.",
+    "gender": "feminine",
+    "language": "hi",
+    "country": "IN",
+    "tagline": "Friendly Concierge"
+  },
+  {
+    "id": "998c6d1b-0bd0-4d27-bce7-ed030e3c9e6c",
+    "name": "Sarthak",
+    "description": "Provides a confident and consistent vocal presence, ensuring clarity and build trust in any communic",
+    "gender": "masculine",
+    "language": "or",
+    "country": "IN",
+    "tagline": "Trustworthy Communicator"
+  },
+  {
+    "id": "4459a9a5-69d6-4680-b970-e13dc51845b6",
+    "name": "Siya",
+    "description": "Breathes life into words with a gentle, expressive quality, perfect for engaging listeners with hear",
+    "gender": "feminine",
+    "language": "hi",
+    "country": "IN",
+    "tagline": "Bright Conversationalist"
+  },
+  {
+    "id": "0046dfd7-171b-4442-9eb7-0712fa712a7a",
+    "name": "Smruti",
+    "description": "Her precise and articulate tone ensures accuracy, making this voice excellent for delivering complex",
+    "gender": "feminine",
+    "language": "or",
+    "country": "IN",
+    "tagline": "Precise Anchor"
+  },
+  {
+    "id": "4663e61a-a9c2-40e1-94c5-c461ed9d3d31",
+    "name": "Sof\u00eda",
+    "description": "This clear and composed voice guides listeners through processes, offering precise information with ",
+    "gender": "feminine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Digital Concierge"
+  },
+  {
+    "id": "c9f95851-235c-458c-acfb-67cdb2558538",
+    "name": "Sol\u00e8ne",
+    "description": "This voice embodies a helpful and confident demeanor, perfect for guiding users through processes an",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Customer Champion"
+  },
+  {
+    "id": "4ff0f045-c140-4aa3-9210-529083f86fca",
+    "name": "Supannee",
+    "description": "Offers a composed and considerate presence, ideal for providing attentive support and detailed respo",
+    "gender": "feminine",
+    "language": "th",
+    "country": "TH",
+    "tagline": "Support Concierge"
+  },
+  {
+    "id": "21c2f7ab-dacb-4847-a593-3cd20668c4b3",
+    "name": "Thiago",
+    "description": "With a composed and clear presence, this speaker excels in delivering information accurately and eng",
+    "gender": "masculine",
+    "language": "es",
+    "country": "ES",
+    "tagline": "Measured Professional"
+  },
+  {
+    "id": "3597a26f-80ef-4bd5-8101-9699bc764917",
+    "name": "Ximena",
+    "description": "Steady, clear Latina female ideal for guided experiences.",
+    "gender": "feminine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Calm Navigator"
+  },
+  {
+    "id": "fbc431c6-7d79-4ef5-b1bb-aab9f579c690",
+    "name": "Younes",
+    "description": "A consistently clear and reassuring tone makes this voice ideal for dependable guidance and seamless",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Clear Helper"
+  },
+  {
+    "id": "0f5ac064-30c7-4cf6-8748-d275f682a0d5",
+    "name": "Yu-Hsin",
+    "description": "This voice offers a calm and precise delivery, ideal for customer support and detailed informational",
+    "gender": "feminine",
+    "language": "zh",
+    "country": "TW",
+    "tagline": "Service Facilitator"
+  },
+  {
+    "id": "7ca2afba-a719-4f06-9af2-ea2b8e3cf14c",
+    "name": "Yuto",
+    "description": "A reliable and organized voice, skillfully conveying important updates and facilitating smooth logis",
+    "gender": "masculine",
+    "language": "ja",
+    "country": "JP",
+    "tagline": "Logistical Assistant"
+  },
+  {
+    "id": "cb21b4af-0e46-44f7-9128-51be7f898311",
+    "name": "Yuzuki",
+    "description": "Offers meticulous explanations with a steady and reassuring tone, ideal for clarifying complex infor",
+    "gender": "feminine",
+    "language": "ja",
+    "country": "JP",
+    "tagline": "Composed Explainer"
+  },
+  {
+    "id": "aa2cafe9-97ba-4052-ac3c-875000f95212",
+    "name": "Zander",
+    "description": "Zander delivers a measured and calm presence, ideal for professional guidance and reassuring explana",
+    "gender": "masculine",
+    "language": "en",
+    "country": "ZA",
+    "tagline": "Composed Advisor"
+  },
+  {
+    "id": "b56a7171-86f0-42b6-b3fa-a316794aa4e0",
+    "name": "Zo\u00e9",
+    "description": "She expertly conveys instructions and updates with clear articulation, ensuring timely and effective",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Informative Dispatcher"
+  },
+  {
+    "id": "c6ccfe32-6bee-484a-a8a2-7a51bee93f99",
+    "name": "\u00c9tienne",
+    "description": "This voice offers a precise and reassuring presence, ideal for customer support and detailed instruc",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Precise Specialist"
+  }
+]

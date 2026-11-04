@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Login - CodeFactory{% endblock %}
+{% block content %}
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold"><i class="bi bi-cpu"></i> CodeFactory<span class="brand-dot">.</span></h2>
+      <p class="text-dim">Factory for AI agent clones</p>
+    </div>
+    <h5 class="mb-3">Sign in to your factory</h5>
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      <div class="mb-3">
+        {{ form.username.label(class="form-label small text-dim") }}
+        {{ form.username(class="form-control", placeholder="username or email") }}
+        {% for err in form.username.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+      </div>
+      <div class="mb-3">
+        {{ form.password.label(class="form-label small text-dim") }}
+        {{ form.password(class="form-control", placeholder="••••••••") }}
+        {% for err in form.password.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+      </div>
+      <div class="mb-3 form-check">
+        {{ form.remember_me(class="form-check-input") }}
+        {{ form.remember_me.label(class="form-check-label small") }}
+      </div>
+      {{ form.submit(class="btn btn-primary-custom w-100") }}
+    </form>
+    <div class="mt-4 text-center">
+      <span class="small text-dim">No account? <a href="{{ url_for('auth.register') }}" style="color: var(--primary);">Create one</a></span>
+      <div class="mt-3 p-2 rounded bg-custom3 small text-dim">
+        <i class="bi bi-lightbulb"></i> Demo: create account, then create Teams → Projects → Tasks → Clone Agents
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

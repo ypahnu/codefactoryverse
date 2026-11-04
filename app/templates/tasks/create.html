@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}New Task - {{ project.name }}{% endblock %}
+{% block content %}
+<div class="container py-4" style="max-width:700px;">
+  <a href="{{ url_for('projects.view', team_slug=team.slug, project_slug=project.slug) }}" class="btn btn-ghost btn-sm mb-3"><i class="bi bi-arrow-left"></i> {{ project.name }}</a>
+  <div class="card-custom p-4">
+    <h4 class="fw-bold mb-1"><i class="bi bi-plus-square"></i> Create Task</h4>
+    <p class="text-dim small mb-4">Tasks are chat timelines — briefing visible by default, full prompt behind + toggle</p>
+    <form method="POST">
+      <div class="mb-3"><label class="form-label small">Title *</label><input name="title" class="form-control" placeholder="Implement authentication system" required></div>
+      <div class="mb-3">
+        <label class="form-label small">Briefing / Summary <span class="text-dim">(shown by default)</span></label>
+        <textarea name="description" class="form-control" rows="3" placeholder="Brief summary of what this task is about — visible in chat list"></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label small">Full Prompt <span class="text-dim">(hidden behind + button)</span></label>
+        <textarea name="full_prompt" class="form-control" rows="6" placeholder="Detailed prompt, requirements, context, acceptance criteria...
+
+Example:
+You are building auth...
+- Must support JWT
+- Password hashing with bcrypt
+- Tests required
+- API docs..."></textarea>
+        <div class="form-text text-dim small">This full prompt will be hidden and revealed when user clicks + button in chat view</div>
+      </div>
+      <div class="row">
+        <div class="col-6 mb-3">
+          <label class="form-label small">Status</label>
+          <select name="status" class="form-select">
+            <option value="todo">Todo</option>
+            <option value="in_progress">In Progress</option>
+            <option value="done">Done</option>
+            <option value="blocked">Blocked</option>
+          </select>
+        </div>
+        <div class="col-6 mb-3">
+          <label class="form-label small">Priority</label>
+          <select name="priority" class="form-select">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+            <option value="critical">Critical</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary-custom w-100"><i class="bi bi-check"></i> Create Task</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

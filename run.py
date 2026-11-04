@@ -1,0 +1,12 @@
+from app import create_app
+from app.extensions import db
+from app.models import User, Team, Project, Task, Agent, TaskMessage, MessageRead
+
+app = create_app()
+
+@app.shell_context_processor
+def make_shell_context():
+    return {'db': db, 'User': User, 'Team': Team, 'Project': Project, 'Task': Task, 'Agent': Agent, 'TaskMessage': TaskMessage, 'MessageRead': MessageRead}
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)

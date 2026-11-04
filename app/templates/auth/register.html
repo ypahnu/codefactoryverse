@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Register - CodeFactory{% endblock %}
+{% block content %}
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold"><i class="bi bi-cpu"></i> CodeFactory<span class="brand-dot">.</span></h2>
+      <p class="text-dim">Create your factory account</p>
+    </div>
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      <div class="row">
+        <div class="col-6 mb-3">
+          {{ form.username.label(class="form-label small text-dim") }}
+          {{ form.username(class="form-control", placeholder="johndoe") }}
+          {% for err in form.username.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+        </div>
+        <div class="col-6 mb-3">
+          {{ form.display_name.label(class="form-label small text-dim") }}
+          {{ form.display_name(class="form-control", placeholder="John Doe") }}
+        </div>
+      </div>
+      <div class="mb-3">
+        {{ form.email.label(class="form-label small text-dim") }}
+        {{ form.email(class="form-control", placeholder="john@example.com") }}
+        {% for err in form.email.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+      </div>
+      <div class="mb-3">
+        {{ form.password.label(class="form-label small text-dim") }}
+        {{ form.password(class="form-control", placeholder="••••••••") }}
+        {% for err in form.password.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+      </div>
+      <div class="mb-3">
+        {{ form.password2.label(class="form-label small text-dim") }}
+        {{ form.password2(class="form-control", placeholder="••••••••") }}
+        {% for err in form.password2.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+      </div>
+      {{ form.submit(class="btn btn-primary-custom w-100") }}
+    </form>
+    <div class="mt-4 text-center">
+      <span class="small text-dim">Already have account? <a href="{{ url_for('auth.login') }}" style="color: var(--primary);">Sign in</a></span>
+    </div>
+  </div>
+</div>
+{% endblock %}

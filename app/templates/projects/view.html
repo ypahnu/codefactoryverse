@@ -1,0 +1,367 @@
+{% extends "base.html" %}
+{% block title %}{{ project.name }} - {{ team.name }}{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <nav class="small text-dim mb-3"><a href="{{ url_for('teams.view', slug=team.slug) }}" style="color:var(--text-dim);">{{ team.name }}</a> / <span class="text-white">{{ project.name }}</span></nav>
+
+  <div class="d-flex justify-content-between align-items-start mb-4">
+    <div>
+      <div class="d-flex align-items-center gap-2 mb-1"><div style="width:12px;height:12px;border-radius:50%;background:{{ project.color }}"></div><h3 class="fw-bold mb-0">{{ project.name }}</h3></div>
+      <p class="text-dim mb-2">{{ project.description }}</p>
+      <div class="d-flex gap-3 small text-dim">
+        <span><i class="bi bi-list-task"></i> {{ stats.total }} tasks</span>
+        <span class="text-success"><i class="bi bi-check-circle"></i> {{ stats.done }} done</span>
+        <span class="text-info"><i class="bi bi-hourglass-split"></i> {{ stats.in_progress }} active</span>
+        <span class="text-warning"><i class="bi bi-circle"></i> {{ stats.todo }} todo</span>
+        {% if project_sandbox %}
+        <span><i class="bi bi-box"></i> {{ project_sandbox.name }} <span class="badge {% if project_sandbox.status in ['Started','Ready'] %}bg-success{% elif project_sandbox.status in ['Creating','Scheduled'] %}bg-warning text-dark{% else %}bg-secondary{% endif %}" style="font-size:9px;">{{ project_sandbox.status }}</span></span>
+        {% endif %}
+      </div>
+    </div>
+    <div class="d-flex gap-2">
+      <a href="{{ url_for('tasks.create', team_slug=team.slug, project_slug=project.slug) }}" class="btn btn-primary-custom"><i class="bi bi-plus"></i> New Task</a>
+      <a href="{{ url_for('projects.edit', team_slug=team.slug, project_slug=project.slug) }}" class="btn btn-ghost"><i class="bi bi-pencil"></i></a>
+      <form method="POST" action="{{ url_for('projects.delete', team_slug=team.slug, project_slug=project.slug) }}" onsubmit="return confirm('Delete project?')"><button class="btn btn-ghost text-danger"><i class="bi bi-trash"></i></button></form>
+    </div>
+  </div>
+
+  {# Project Workspace (Sandbox) - Tabs per user request, no "Real" word #}
+  <div class="card-custom p-3 mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h6 class="fw-bold mb-0"><i class="bi bi-box"></i> Project Workspace (Sandbox) {% if project_sandboxes %}<span class="badge bg-primary" style="font-size:10px;">{{ project_sandboxes|length }} sandbox{{ 'es' if project_sandboxes|length != 1 else '' }}</span>{% endif %}</h6>
+      <div class="d-flex gap-2">
+        {% if project_sandbox %}
+          {% if sandbox_live %}
+            <span class="badge bg-success" style="font-size:10px;"><i class="bi bi-check-circle"></i> Active</span>
+          {% endif %}
+          <form method="POST" action="{{ url_for('project_sandbox.sandbox_action', team_slug=team.slug, project_slug=project.slug, action='check_tunnel') }}"><button class="btn btn-ghost btn-sm" style="font-size:10px;"><i class="bi bi-link"></i> Check Tunnel</button></form>
+          <form method="POST" action="{{ url_for('project_sandbox.sandbox_action', team_slug=team.slug, project_slug=project.slug, action='restart') }}"><button class="btn btn-ghost btn-sm" style="font-size:10px;"><i class="bi bi-arrow-clockwise"></i> Restart</button></form>
+          <form method="POST" action="{{ url_for('project_sandbox.sandbox_action', team_slug=team.slug, project_slug=project.slug, action='stop') }}"><button class="btn btn-ghost btn-sm text-danger" style="font-size:10px;"><i class="bi bi-stop"></i> Stop</button></form>
+        
+        {% endif %}
+      </div>
+    </div>
+
+    {% if project_sandbox %}
+      {% if not sandbox_live %}
+      <div class="p-4 rounded text-center" style="background:rgba(245,158,11,0.1);border:1px dashed rgba(245,158,11,0.4);">
+        <div class="mb-2"><span style="font-size:20px;">⏳</span></div>
+        <h6 class="fw-bold">Waiting for sandbox & tunnels...</h6>
+        <p class="small text-dim mb-2">
+          Sandbox {{ project_sandbox.name }} is {{ project_sandbox.status }}.
+          {% if project_sandbox.status == 'Finished' %}Tunnel check failed (established=false) — status corrected in DB. Recreate to get a fresh tunnel.{% elif not project_sandbox.is_alive() %}It appears expired or deleted in Modal dashboard. Will be cleaned up.{% else %}Checking tunnel establishment...{% endif %}
+        </p>
+        <div class="small mb-2"><span class="text-dim">ID:</span> <code style="font-size:10px;">{{ project_sandbox.modal_sandbox_id[:20] if project_sandbox.modal_sandbox_id else 'creating...' }}</code></div>
+        <div class="d-flex justify-content-center gap-2">
+          <form method="POST" action="{{ url_for('project_sandbox.sandbox_action', team_slug=team.slug, project_slug=project.slug, action='check_tunnel') }}"><button class="btn btn-ghost btn-sm"><i class="bi bi-arrow-clockwise"></i> Check Tunnel</button></form>
+          <form method="POST" action="{{ url_for('project_sandbox.sandbox_action', team_slug=team.slug, project_slug=project.slug, action='start') }}"><button class="btn btn-primary-custom btn-sm"><i class="bi bi-play"></i> Recreate Sandbox</button></form>
+        </div>
+      </div>
+      {% else %}
+      {# Active state - with tunnel #}
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <div class="small mb-1"><span class="text-dim">Name:</span> <span class="fw-bold">{{ project_sandbox.name }}</span> <span class="badge bg-success" style="font-size:9px;">{{ project_sandbox.status }} • alive</span></div>
+          <div class="small mb-1"><span class="text-dim">Type:</span> {{ project_sandbox.type }} ({{ project_sandbox.runtime }})</div>
+          <div class="small mb-1"><span class="text-dim">ID:</span> <code style="font-size:10px;color:#ef4444;">{{ project_sandbox.modal_sandbox_id[:20] if project_sandbox.modal_sandbox_id else 'none' }}</code></div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-2 rounded small" style="background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.4);">
+            <div class="text-success fw-bold">🚀 Created HTTP with tunnel!</div>
+            <div style="word-break:break-all;"><span class="text-dim">Public URL:</span> <a href="{{ project_sandbox.tunnel_url }}" target="_blank" style="color:#10b981;">{{ project_sandbox.tunnel_url }}</a></div>
+            {% if project_sandbox.tunnel_urls_json %}
+              {% set tunnels = project_sandbox.tunnels() %}
+              {% for port, info in tunnels.items() %}
+                {% if port|string != project_sandbox.tunnel_port|string %}
+                <div class="mt-1"><span class="text-dim">Port {{ port }} Frontend:</span> <a href="{{ info.url if info is mapping else info }}" target="_blank" style="color:#8b5cf6;word-break:break-all;font-size:10px;">{{ info.url if info is mapping else info }}</a> <-- Open in browser!</div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+            <div class="mt-1 small"><span class="text-dim">Endpoints:</span> POST /edit, GET /heartbeat</div>
+          </div>
+        </div>
+      </div>
+
+      {# Tabs for Files + SendFiles, Github, Exec, Recent Activity - 4 tabs per user request #}
+      <ul class="nav nav-tabs" id="sandboxTabs" role="tablist" style="border-bottom:1px solid var(--border);">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="files-tab" data-bs-toggle="tab" data-bs-target="#files" type="button" role="tab" style="font-size:11px;background:var(--bg3);color:var(--text);border:1px solid var(--border);"><i class="bi bi-folder"></i> Files in Sandbox + Send Files</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="github-tab" data-bs-toggle="tab" data-bs-target="#github" type="button" role="tab" style="font-size:11px;background:var(--bg2);color:var(--text-dim);border:1px solid var(--border);"><i class="bi bi-github"></i> Github</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="exec-tab" data-bs-toggle="tab" data-bs-target="#exec" type="button" role="tab" style="font-size:11px;background:var(--bg2);color:var(--text-dim);border:1px solid var(--border);"><i class="bi bi-terminal"></i> Exec Command Line</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="activity-tab" data-bs-toggle="tab" data-bs-target="#activity" type="button" role="tab" style="font-size:11px;background:var(--bg2);color:var(--text-dim);border:1px solid var(--border);"><i class="bi bi-activity"></i> Recent Activity</button>
+        </li>
+      </ul>
+
+      <div class="tab-content p-3" style="background:var(--bg2);border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;">
+        {# Tab 1: Files in Sandbox + Send Files (combined, same panel size per user request) #}
+        <div class="tab-pane fade show active" id="files" role="tabpanel">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="card-custom p-2" style="background:var(--bg3);border:1px solid var(--border);height:100%;">
+                <h6 class="small fw-bold mb-2" style="font-size:11px;"><i class="bi bi-folder"></i> Files in Sandbox</h6>
+                <div id="sandbox-files-list" class="small p-2 rounded" style="background:#0f0f17;border:1px solid var(--border);max-height:150px;overflow-y:auto;font-size:10px;min-height:80px;">
+                  <span class="text-dim">Loading files from sandbox via filesystem API...</span>
+                </div>
+                <button id="refresh-files-btn" class="btn btn-ghost btn-sm mt-2" style="font-size:9px;"><i class="bi bi-arrow-clockwise"></i> Refresh</button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card-custom p-2" style="background:var(--bg3);border:1px solid var(--border);height:100%;">
+                <h6 class="small fw-bold mb-2" style="font-size:11px;"><i class="bi bi-cloud-upload"></i> Send Files to Sandbox</h6>
+                <form method="POST" action="{{ url_for('project_sandbox.sandbox_upload', team_slug=team.slug, project_slug=project.slug) }}" enctype="multipart/form-data">
+                  <div class="d-flex gap-2 align-items-center p-2 rounded mb-2" style="background:var(--bg2);border:1px solid var(--border);">
+                    <input type="file" name="file" class="form-control form-control-sm" required id="file-input-display" style="display:none;">
+                    <button type="button" class="btn btn-ghost btn-sm" onclick="document.getElementById('file-input-display').click()" style="font-size:11px;">Browse...</button>
+                    <span id="file-name-display" class="small text-dim" style="font-size:11px;flex:1;">No file selected.</span>
+                    <button class="btn btn-primary-custom btn-sm" style="font-size:11px;background:#6366f1;"><i class="bi bi-upload"></i> Upload</button>
+                  </div>
+                </form>
+                <small class="text-dim" style="font-size:9px;">Normal file upload to sandbox via filesystem API - uses sb.filesystem.copy_from_local (no volume)</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {# Tab 2: Github (same size as Files) #}
+        <div class="tab-pane fade" id="github" role="tabpanel">
+          <div class="card-custom p-3" style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);">
+            <h6 class="small fw-bold mb-2" style="font-size:11px;"><i class="bi bi-github"></i> GitHub - Clone Repo</h6>
+            <div class="d-flex flex-column gap-2">
+              <input id="git-repo-url-input" type="text" class="form-control form-control-sm" placeholder="https://github.com/user/repo" value="{{ project_sandbox.git_repo_url or '' }}" style="font-size:11px;">
+              <div class="d-flex gap-2">
+                <input id="git-branch-input" type="text" class="form-control form-control-sm" placeholder="main" value="{{ project_sandbox.git_branch or 'main' }}" style="width:100px;font-size:11px;">
+                <button id="git-clone-btn" class="btn btn-primary-custom btn-sm w-100" style="font-size:11px;"><i class="bi bi-git"></i> Clone/Pull Repo into /workspace/repo</button>
+              </div>
+            </div>
+            <small class="text-dim mt-2 d-block" style="font-size:9px;">Per-project - clones into /workspace/repo, visible across tasks. Same size as Files panel.</small>
+            <div id="github-status" class="small mt-2 p-2 rounded" style="background:#0f0f17;border:1px solid var(--border);font-size:10px;min-height:40px;display:none;"></div>
+          </div>
+        </div>
+
+        {# Tab 3: Exec Command Line #}
+        <div class="tab-pane fade" id="exec" role="tabpanel">
+          <div class="card-custom p-2" style="background:var(--bg3);border:1px solid var(--border);">
+            <h6 class="small fw-bold mb-2" style="font-size:11px;"><i class="bi bi-terminal"></i> Exec Command Line to Sandbox</h6>
+            <div id="exec-output" class="small p-2 rounded" style="background:#0f0f17;border:1px solid var(--border);min-height:100px;max-height:150px;overflow-y:auto;font-family:JetBrains Mono, monospace;font-size:11px;white-space:pre-wrap;position:relative;">
+              <div style="position:absolute;left:6px;top:6px;width:10px;height:10px;border:1px solid #10b981;border-radius:2px;background:rgba(16,185,129,0.15);"></div>
+              <div style="margin-left:16px;">$ python -m http.server 8000 --directory /workspace
+Serving HTTP on 0.0.0.0 port 8000 - will show exec output here (real sandbox, filesystem API, no volume)
+Returncode: 0 (real)</div>
+            </div>
+            <div class="input-group input-group-sm mt-2" style="border:1px solid var(--border);border-radius:6px;overflow:hidden;background:#0f0f17;box-shadow:0 0 0 1px rgba(107,114,128,0.1);">
+              <span class="input-group-text" style="font-size:11px;background:#1a1a25;border:none;border-right:1px solid var(--border);font-family:JetBrains Mono, monospace;display:flex;align-items:center;gap:6px;">
+                <span style="width:12px;height:12px;border:1px solid #10b981;border-radius:2px;display:inline-block;background:rgba(16,185,129,0.15);box-shadow:0 0 4px rgba(16,185,129,0.3);"></span>
+                exec:
+              </span>
+              <input id="exec-command-input" type="text" class="form-control form-control-sm" placeholder="ls -la /workspace, git status, python -m http.server 8000 --directory /workspace" style="font-size:11px;background:#0f0f17;color:var(--text);border:none;font-family:JetBrains Mono, monospace;" value="python -m http.server 8000 --directory /workspace">
+              <button id="exec-command-btn" class="btn btn-ghost btn-sm" style="font-size:10px;border-left:1px solid var(--border);background:var(--bg3);"><i class="bi bi-play-fill"></i> Run</button>
+              <button id="exec-refresh-btn" class="btn btn-ghost btn-sm" style="font-size:10px;border-left:1px solid var(--border);" title="Refresh files and clear output"><i class="bi bi-arrow-clockwise"></i></button>
+            </div>
+            <small class="text-dim mt-1 d-block" style="font-size:9px;"><i class="bi bi-square"></i> Square at left indicates command line to sandbox via sb.exec (filesystem API, no volume, per-project)</small>
+          </div>
+        </div>
+
+        {# Tab 4: Recent Activity #}
+        <div class="tab-pane fade" id="activity" role="tabpanel">
+          <h6 class="small fw-bold mb-2" style="font-size:11px;"><i class="bi bi-activity"></i> Recent Activity (cross-task visible - e.g. server restarting from other task while chatting)</h6>
+          <div class="row g-2">
+            {% for act in recent_activities[:8] %}
+            <div class="col-md-6">
+              <div class="small p-2 rounded" style="background:var(--bg3);border:1px solid var(--border);font-size:10px;">
+                <span class="badge bg-secondary" style="font-size:8px;">{{ act.type }}</span> {{ act.summary[:100] }} <span class="text-dim">• {{ act.created_at.strftime('%H:%M') if act.created_at else '' }}</span>
+              </div>
+            </div>
+            {% else %}
+            <div class="col-12"><small class="text-dim">No recent activity yet</small></div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+    {% else %}
+    <div class="small text-dim">
+      No sandbox yet. Create sandbox with +Add Sandbox button - select type basic modal one and ports exposed (8000,5173) for tunnel.<br>
+      Based on <a href="https://github.com/modal-labs/modal-vibe/blob/main/sandbox/start_sandbox.py" target="_blank" style="color:var(--primary);">modal-vibe start_sandbox.py</a>
+    </div>
+    <form method="POST" action="{{ url_for('project_sandbox.sandbox_action', team_slug=team.slug, project_slug=project.slug, action='start') }}" class="mt-2">
+      <div class="row g-2">
+        <div class="col-md-4"><input name="ports" class="form-control form-control-sm" placeholder="8000,5173" value="8000,5173"><small class="text-dim" style="font-size:10px;">Ports for tunnel</small></div>
+        <div class="col-md-4"><select name="sandbox_type" class="form-select form-select-sm"><option value="basic" selected>Basic Modal</option><option value="project-vm">Project VM</option></select><small class="text-dim" style="font-size:10px;">Type</small></div>
+        <div class="col-md-4"><button class="btn btn-primary-custom btn-sm w-100"><i class="bi bi-plus"></i> Add Sandbox</button></div>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const teamSlug = "{{ team.slug }}";
+    const projectSlug = "{{ project.slug }}";
+    const filesListEl = document.getElementById('sandbox-files-list');
+    const execOutputEl = document.getElementById('exec-output');
+    
+    function loadFiles(path = '/workspace') {
+      if (!filesListEl) return;
+      filesListEl.innerHTML = '<span class="text-dim">Loading ' + path + ' from sandbox via filesystem API (no volume)...</span>';
+      fetch(`/projects/team/${teamSlug}/${projectSlug}/sandbox/files?path=${encodeURIComponent(path)}`)
+        .then(r => r.json())
+        .then(data => {
+          if (data.files && data.files.length > 0) {
+            let html = '';
+            data.files.forEach(f => {
+              html += `<div><i class="bi bi-file"></i> ${f.name} <small class="text-dim">(${f.type}, ${f.size} bytes)</small></div>`;
+            });
+            filesListEl.innerHTML = html;
+          } else {
+            filesListEl.innerHTML = '<span class="text-dim">No files in ' + path + ' yet. Upload via normal file upload (real sandbox).</span>';
+          }
+          if (data.error) {
+            filesListEl.innerHTML = `<span class="text-danger">${data.error} - logged, showing error in page (not JSON)</span>`;
+          }
+        })
+        .catch(err => {
+          filesListEl.innerHTML = '<span class="text-danger">Failed to load files: ' + err + ' - logged</span>';
+        });
+    }
+    
+    if (filesListEl) loadFiles('/workspace');
+    
+    document.getElementById('refresh-files-btn')?.addEventListener('click', () => {
+      loadFiles('/workspace');
+      if (execOutputEl) execOutputEl.textContent = '$ Refreshed file list (real sandbox, no volume)';
+    });
+    document.getElementById('exec-refresh-btn')?.addEventListener('click', () => {
+      loadFiles('/workspace');
+      if (execOutputEl) execOutputEl.textContent = '$ Refreshed file list';
+    });
+    
+    const execInput = document.getElementById('exec-command-input');
+    const execBtn = document.getElementById('exec-command-btn');
+    function execCommand() {
+      const cmd = execInput ? execInput.value.trim() : '';
+      if (!cmd) {
+        const promptCmd = prompt('Enter command to exec in real sandbox:', 'ls -la /workspace');
+        if (!promptCmd) return;
+        if (execInput) execInput.value = promptCmd;
+        return execCommand();
+      }
+      if (execOutputEl) execOutputEl.textContent = `$ ${cmd}\nExecuting in real sandbox (no volume, per-project)...`;
+      fetch(`/projects/team/${teamSlug}/${projectSlug}/sandbox/exec`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({command: cmd})
+      }).then(r => r.json()).then(data => {
+        if (data.error) {
+          if (execOutputEl) execOutputEl.textContent = `Error: ${data.error}\nLogged, showing error in page (not JSON page)\n$ ${data.command || cmd}`;
+        } else {
+          if (execOutputEl) execOutputEl.textContent = `$ ${data.command}\n${data.stdout}\nReturncode: ${data.returncode}${data.mock ? ' (mock - real would be via Modal)' : ' (real sandbox, no volume)'}`;
+        }
+      }).catch(err => {
+        if (execOutputEl) execOutputEl.textContent = 'Exec failed: ' + err + ' - logged';
+      });
+    }
+    
+    execBtn?.addEventListener('click', execCommand);
+    execInput?.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        execCommand();
+      }
+    });
+
+    document.getElementById('git-clone-btn')?.addEventListener('click', () => {
+      const repoUrl = document.getElementById('git-repo-url-input')?.value.trim();
+      const branch = document.getElementById('git-branch-input')?.value.trim() || 'main';
+      if (!repoUrl) {
+        alert('Enter repo URL');
+        return;
+      }
+      if (execOutputEl) execOutputEl.textContent = `Cloning ${repoUrl} branch ${branch} into /workspace/repo... (real sandbox, per-project)`;
+      fetch(`/projects/team/${team.slug}/${project.slug}/sandbox/clone-repo`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({repo_url: repoUrl, branch: branch})
+      }).then(r => r.json()).then(data => {
+        if (data.error) {
+          if (execOutputEl) execOutputEl.textContent = `Clone failed: ${data.error} - logged, showing error in page (not JSON)`;
+        } else {
+          if (execOutputEl) execOutputEl.textContent = `Cloned ${repoUrl} to /workspace/repo\nOutput: ${(data.output || '').substring(0,500)}\nReturncode: ${data.returncode || 0}${data.mock ? ' (mock)' : ' (real)'}`;
+        }
+        loadFiles('/workspace');
+      }).catch(err => {
+        if (execOutputEl) execOutputEl.textContent = 'Clone failed: ' + err;
+      });
+    });
+
+    const fileInput = document.getElementById('file-input-display');
+    const fileNameDisplay = document.getElementById('file-name-display');
+    if (fileInput && fileNameDisplay) {
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+          fileNameDisplay.textContent = fileInput.files[0].name;
+        } else {
+          fileNameDisplay.textContent = 'No file selected.';
+        }
+      });
+    }
+  });
+  </script>
+
+  <div class="row g-3">
+    <div class="col-md-4">
+      <div class="kanban-col">
+        <div class="kanban-header"><span><span class="priority-dot bg-warning"></span> TODO ({{ tasks_todo|length }})</span></div>
+        {% for task in tasks_todo %}
+        <a href="{{ url_for('tasks.view', team_slug=team.slug, project_slug=project.slug, task_id=task.id) }}" class="text-decoration-none">
+          <div class="task-card">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="small fw-bold text-white">{{ task.title }}</span>
+              <span class="badge {% if task.priority=='critical' %}bg-danger{% elif task.priority=='high' %}bg-warning text-dark{% elif task.priority=='medium' %}bg-info{% else %}bg-secondary{% endif %}" style="font-size:10px;">{{ task.priority }}</span>
+            </div>
+            <p class="small text-dim mb-2" style="font-size:12px;">{{ (task.description or '')[:80] }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-dim" style="font-size:11px;"><i class="bi bi-robot"></i> {{ task.agents.count() }} agents</small>
+              <small class="text-dim" style="font-size:11px;"><i class="bi bi-chat"></i> {{ task.messages.count() }}</small>
+            </div>
+          </div>
+        </a>
+        {% else %}<div class="small text-dim text-center py-4">No todo tasks</div>{% endfor %}
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="kanban-col">
+        <div class="kanban-header"><span><span class="priority-dot bg-info"></span> IN PROGRESS ({{ tasks_in_progress|length }})</span></div>
+        {% for task in tasks_in_progress %}
+        <a href="{{ url_for('tasks.view', team_slug=team.slug, project_slug=project.slug, task_id=task.id) }}" class="text-decoration-none">
+          <div class="task-card" style="border-left:3px solid #0ea5e9;">
+            <div class="d-flex justify-content-between mb-1"><span class="small fw-bold text-white">{{ task.title }}</span><span class="badge bg-info" style="font-size:10px;">{{ task.priority }}</span></div>
+            <p class="small text-dim mb-2" style="font-size:12px;">{{ (task.description or '')[:80] }}</p>
+            <div class="d-flex justify-content-between"><small class="text-dim" style="font-size:11px;">{{ task.agents.count() }} agents</small><small class="text-dim" style="font-size:11px;">{{ task.messages.count() }} msgs</small></div>
+          </div>
+        </a>
+        {% else %}<div class="small text-dim text-center py-4">No active tasks</div>{% endfor %}
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="kanban-col">
+        <div class="kanban-header"><span><span class="priority-dot bg-success"></span> DONE ({{ tasks_done|length }})</span></div>
+        {% for task in tasks_done %}
+        <a href="{{ url_for('tasks.view', team_slug=team.slug, project_slug=project.slug, task_id=task.id) }}" class="text-decoration-none">
+          <div class="task-card" style="opacity:0.8;border-left:3px solid #10b981;">
+            <div class="d-flex justify-content-between mb-1"><span class="small fw-bold text-white" style="text-decoration:line-through;">{{ task.title }}</span><i class="bi bi-check-circle text-success"></i></div>
+            <p class="small text-dim mb-1" style="font-size:12px;">{{ (task.description or '')[:60] }}</p>
+          </div>
+        </a>
+        {% else %}<div class="small text-dim text-center py-4">No done tasks yet</div>{% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

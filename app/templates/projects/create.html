@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Create Project - {{ team.name }}{% endblock %}
+{% block content %}
+<div class="container py-4" style="max-width:600px;">
+  <a href="{{ url_for('teams.view', slug=team.slug) }}" class="btn btn-ghost btn-sm mb-3"><i class="bi bi-arrow-left"></i> {{ team.name }}</a>
+  <div class="card-custom p-4">
+    <h4 class="fw-bold">Create new project</h4>
+    <p class="text-dim small mb-4">In team {{ team.name }}</p>
+    <form method="POST">
+      <div class="mb-3"><label class="form-label small">Project Name</label><input name="name" class="form-control" placeholder="CodeFactory API" required></div>
+      <div class="mb-3"><label class="form-label small">Description</label><textarea name="description" class="form-control" rows="3" placeholder="What are you building?"></textarea></div>
+      <div class="mb-3"><label class="form-label small">Color</label>
+        <div class="d-flex gap-2">
+          {% for color in ['#8b5cf6','#6366f1','#ec4899','#10b981','#f59e0b','#ef4444','#06b6d4'] %}
+          <label><input type="radio" name="color" value="{{ color }}" class="d-none" {% if loop.first %}checked{% endif %}><div style="width:32px;height:32px;background:{{ color }};border-radius:8px;cursor:pointer;border:2px solid transparent;" class="color-option"></div></label>
+          {% endfor %}
+        </div>
+      </div>
+
+      <hr class="border-custom my-4">
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="addSandboxCheck" name="add_sandbox" value="1">
+          <label class="form-check-label fw-bold" for="addSandboxCheck">
+            <i class="bi bi-box"></i> + Add Sandbox (Modal)
+          </label>
+        </div>
+        <small class="text-dim" style="font-size:11px;">Create a Modal sandbox for this project with HTTP tunnel - 1 per project for now, multiples supported later</small>
+      </div>
+
+      <div id="sandboxOptions" class="p-3 rounded mb-3 d-none" style="background:var(--bg3);border:1px dashed var(--border);">
+        <h6 class="small fw-bold mb-3"><i class="bi bi-server"></i> Sandbox Configuration</h6>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label small">Sandbox Type</label>
+            <select name="sandbox_type" class="form-select">
+              <option value="basic" selected>Basic Modal (gvisor)</option>
+              <option value="project-vm">Project VM (for Docker)</option>
+              <option value="dev">Dev Server</option>
+            </select>
+            <small class="text-dim" style="font-size:10px;">For now just basic modal one</small>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label small">Runtime</label>
+            <select name="sandbox_runtime" class="form-select">
+              <option value="gvisor" selected>gvisor (default, strong isolation)</option>
+              <option value="vm">VM (full Linux, Docker support)</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small">Ports Exposed for Tunnel (comma separated)</label>
+          <input name="sandbox_ports" class="form-control" placeholder="8000,5173" value="8000,5173">
+          <small class="text-dim" style="font-size:10px;">e.g. 8000 for main HTTP, 5173 for frontend vite - will create encrypted_ports and tunnels</small>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label small">Git Repo URL (optional)</label>
+            <input name="git_repo_url" class="form-control" placeholder="https://github.com/user/repo">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label small">Dev Command (optional)</label>
+            <input name="dev_command" class="form-control" placeholder="npm run dev or python -m http.server 8000">
+          </div>
+        </div>
+        <div class="alert small" style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);font-size:11px;">
+          <i class="bi bi-info-circle"></i> Based on <a href="https://github.com/modal-labs/modal-vibe/blob/main/sandbox/start_sandbox.py" target="_blank" style="color:var(--primary);">modal-vibe example</a> - will create sandbox with encrypted_ports and wait for tunnels, then print "created HTTP with tunnel"
+        </div>
+      </div>
+
+      <button class="btn btn-primary-custom w-100">Create Project</button>
+    </form>
+  </div>
+</div>
+<script>
+document.querySelectorAll('.color-option').forEach(el=>{el.addEventListener('click',function(){document.querySelectorAll('.color-option').forEach(c=>c.style.borderColor='transparent'); this.style.borderColor='white';});});
+document.getElementById('addSandboxCheck')?.addEventListener('change', function() {
+  const opts = document.getElementById('sandboxOptions');
+  if (this.checked) {
+    opts.classList.remove('d-none');
+  } else {
+    opts.classList.add('d-none');
+  }
+});
+</script>
+{% endblock %}

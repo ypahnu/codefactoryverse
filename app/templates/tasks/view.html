@@ -1,0 +1,844 @@
+{% extends "base.html" %}
+{% block title %}{{ task.title }} - {{ project.name }}{% endblock %}
+{% block content %}
+<div class="container-fluid py-3">
+  <div class="container">
+    <nav class="small text-dim mb-2"><a href="{{ url_for('teams.view', slug=team.slug) }}" class="text-dim text-decoration-none">{{ team.name }}</a> / <a href="{{ url_for('projects.view', team_slug=team.slug, project_slug=project.slug) }}" class="text-dim text-decoration-none">{{ project.name }}</a> / <span class="text-white">{{ task.title }}</span></nav>
+  </div>
+
+  <div class="container">
+    <div class="row g-4">
+      <!-- Main chat area -->
+      <div class="col-lg-8">
+        <div class="card-custom p-3 mb-3">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="flex-grow-1">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="badge {% if task.status=='done' %}bg-success{% elif task.status=='in_progress' %}bg-info{% elif task.status=='blocked' %}bg-danger{% else %}bg-warning text-dark{% endif %}">{{ task.status }}</span>
+                <span class="badge {% if task.priority=='critical' %}bg-danger{% elif task.priority=='high' %}bg-warning text-dark{% else %}bg-secondary{% endif %}">{{ task.priority }}</span>
+                <small class="text-dim">#{{ task.id }} • {{ task.created_at|shortdate }}</small>
+              </div>
+              <h4 class="fw-bold mb-1">{{ task.title }}</h4>
+              <p class="text-dim small mb-0">Chat view: briefing visible • click <span class="badge bg-custom3 border border-custom">+ show full prompt</span> to see full details</p>
+            </div>
+            <div class="d-flex gap-2">
+              <select class="form-select form-select-sm status-changer" style="width:130px;" data-task-id="{{ task.id }}" data-team="{{ team.slug }}" data-project="{{ project.slug }}">
+                <option value="todo" {% if task.status=='todo' %}selected{% endif %}>Todo</option>
+                <option value="in_progress" {% if task.status=='in_progress' %}selected{% endif %}>In Progress</option>
+                <option value="done" {% if task.status=='done' %}selected{% endif %}>Done</option>
+                <option value="blocked" {% if task.status=='blocked' %}selected{% endif %}>Blocked</option>
+              </select>
+              <a href="{{ url_for('tasks.edit', team_slug=team.slug, project_slug=project.slug, task_id=task.id) }}" class="btn btn-ghost btn-sm"><i class="bi bi-pencil"></i></a>
+              <form method="POST" action="{{ url_for('tasks.delete', team_slug=team.slug, project_slug=project.slug, task_id=task.id) }}" onsubmit="return confirm('Delete task?')"><button class="btn btn-ghost btn-sm text-danger"><i class="bi bi-trash"></i></button></form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Timeline -->
+        <div class="card-custom p-3 mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex align-items-center gap-2">
+              <h6 class="fw-bold mb-0"><i class="bi bi-chat-dots"></i> Task Timeline (Chat View)</h6>
+              <span class="badge bg-primary" style="font-size:10px;">All bots read all chats ✓</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <small class="text-dim">{{ messages|length }} messages • {{ agents|length }} bots</small>
+              {% if agents|length > 1 %}
+              <form method="POST" action="{{ url_for('tasks.sync_reads', team_slug=team.slug, project_slug=project.slug, task_id=task.id) }}" style="display:inline;">
+                <button class="btn btn-ghost btn-sm" style="font-size:10px;padding:2px 6px;" title="Ensure all bots have read all chats (broadcast sync)">
+                  <i class="bi bi-arrow-repeat"></i> Sync Reads
+                </button>
+              </form>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="chat-timeline">
+            {% for msg in messages %}
+            {% if msg.role == 'system' %}
+            {# SYSTEM LOG - COMPACT VERSION #}
+            <div class="chat-item system system-compact">
+              <div class="d-flex align-items-center gap-2 flex-wrap" style="font-size:11px;line-height:1.2;">
+                <span class="chat-role" style="font-size:9px;padding:1px 5px;background:rgba(107,114,128,0.2);"><i class="bi bi-gear"></i> SYS</span>
+                <span class="text-dim" style="font-size:11px;">{{ msg.content }}</span>
+                <span class="ms-auto d-flex align-items-center gap-2">
+                  {% if msg.reads.count() > 0 %}
+                  <small class="text-dim" style="font-size:9px;" title="{% for r in msg.reads.all() %}{{ r.agent.name }} {% endfor %}"><i class="bi bi-eye"></i> {{ msg.reads.count() }}</small>
+                  {% endif %}
+                  <span class="chat-time" style="font-size:9px;">{{ msg.created_at.strftime('%H:%M') }}</span>
+                  {% if msg.has_full_prompt() %}
+                  <button class="btn-expand" data-target="prompt-{{ msg.id }}" style="font-size:9px;padding:1px 6px;margin-top:0;">+ details</button>
+                  {% endif %}
+                </span>
+              </div>
+              {% if msg.has_full_prompt() %}
+                <div id="prompt-{{ msg.id }}" class="chat-full-prompt" style="font-size:11px;margin-top:6px;">{{ msg.full_prompt }}</div>
+              {% endif %}
+            </div>
+            {% else %}
+            <div class="chat-item {% if msg.role=='briefing' %}briefing{% elif msg.role=='assistant' %}assistant{% endif %}">
+              <div class="chat-header">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="chat-role">
+                    {% if msg.role=='briefing' %}<i class="bi bi-file-text"></i> briefing
+                    {% elif msg.role=='assistant' %}<i class="bi bi-robot"></i> {{ msg.agent.name if msg.agent else 'agent' }}
+                      {% if msg.agent and msg.agent.voice_name %}<small style="font-size:9px;color:var(--primary);">🔊 {{ msg.agent.voice_name }}</small>{% endif %}
+                    {% else %}<i class="bi bi-person"></i> {{ msg.author.username if msg.author else 'user' }}
+                    {% endif %}
+                  </span>
+                  {% if msg.message_type %}<span class="small text-dim" style="font-size:11px;">{{ msg.message_type }}</span>{% endif %}
+                  {% if msg.role=='assistant' %}
+                  <button class="btn btn-ghost btn-sm tts-play-btn" 
+                          data-message-id="{{ msg.id }}" 
+                          data-transcript="{{ msg.content|e }}" 
+                          data-voice-id="{{ msg.agent.voice_id if msg.agent and msg.agent.voice_id else '' }}"
+                          data-voice-name="{{ msg.agent.voice_name if msg.agent and msg.agent.voice_name else '' }}"
+                          style="font-size:10px;padding:1px 6px;" title="Play this message - listen to {{ msg.agent.name if msg.agent else 'agent' }}">
+                    <i class="bi bi-play-fill"></i> Play
+                  </button>
+                  <button class="btn btn-ghost btn-sm execute-sandbox-btn" 
+                          data-message-id="{{ msg.id }}"
+                          data-task-id="{{ task.id }}"
+                          data-team-slug="{{ team.slug }}"
+                          data-project-slug="{{ project.slug }}"
+                          style="font-size:10px;padding:1px 6px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:#10b981;" title="Execute this in sandbox /workspace - makes changes to sandbox">
+                    <i class="bi bi-box-arrow-in-right"></i> Execute in Sandbox
+                  </button>
+                  {% endif %}
+                </div>
+                <span class="chat-time">{{ msg.created_at.strftime('%H:%M • %b %d') }}</span>
+              </div>
+              {# Server-side rendered with green code blocks + exec per file, DB has no HTML tags, parsed when reading #}
+              <div class="chat-briefing">
+                {% if msg.rendered_content %}
+                  {{ msg.rendered_content|safe }}
+                {% else %}
+                  {{ msg.content }}
+                {% endif %}
+              </div>
+              {# Read receipts - all bots have read this chat #}
+              {% if msg.reads.count() > 0 %}
+              <div class="mt-2 d-flex align-items-center gap-1 flex-wrap">
+                <small class="text-dim" style="font-size:11px;"><i class="bi bi-eye"></i> Read by {{ msg.reads.count() }} bot{{ 's' if msg.reads.count() != 1 else ''}}:</small>
+                {% for read in msg.reads.limit(5).all() %}
+                  <span class="badge bg-custom3 border border-custom" style="font-size:10px;" title="{{ read.agent.name }} read at {{ read.read_at.strftime('%H:%M') }}">
+                    <i class="bi bi-robot"></i> {{ read.agent.name[:15] }}
+                  </span>
+                {% endfor %}
+                {% if msg.reads.count() > 5 %}
+                  <span class="badge bg-primary" style="font-size:10px;">+{{ msg.reads.count() - 5 }} more</span>
+                {% endif %}
+              </div>
+              {% elif agents|length > 0 %}
+              <div class="mt-1"><small class="text-dim" style="font-size:10px;"><i class="bi bi-eye-slash"></i> Not yet read by bots (will broadcast on next message)</small></div>
+              {% endif %}
+              {% if msg.has_full_prompt() %}
+                <button class="btn-expand" data-target="prompt-{{ msg.id }}">+ show full prompt ({{ msg.code_blocks_count }} code blocks, accordion) – click to toggle tabs</button>
+                <div id="prompt-{{ msg.id }}" class="chat-full-prompt">
+                  {# Tabs: parsed (perfect yet) and raw to figure out what parsing is doing #}
+                  <ul class="nav nav-tabs" id="fullprompt-tabs-{{ msg.id }}" role="tablist" style="border-bottom:1px solid var(--border); margin-bottom:8px;">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="parsed-tab-{{ msg.id }}" data-bs-toggle="tab" data-bs-target="#parsed-{{ msg.id }}" type="button" role="tab" aria-controls="parsed-{{ msg.id }}" aria-selected="true" style="font-size:11px; background:rgba(16,185,129,0.15); color:#10b981; border:1px solid var(--border);">
+                        <i class="bi bi-code-square"></i> Show full prompt (parsed) – perfect yet
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="raw-tab-{{ msg.id }}" data-bs-toggle="tab" data-bs-target="#raw-{{ msg.id }}" type="button" role="tab" aria-controls="raw-{{ msg.id }}" aria-selected="false" style="font-size:11px; background:var(--bg3); color:var(--text-dim); border:1px solid var(--border);">
+                        <i class="bi bi-file-text"></i> Show full prompt raw – to figure out parsing
+                      </button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="fullprompt-tabcontent-{{ msg.id }}">
+                    <div class="tab-pane fade show active" id="parsed-{{ msg.id }}" role="tabpanel" aria-labelledby="parsed-tab-{{ msg.id }}">
+                      {% if msg.rendered_full_prompt %}
+                        {{ msg.rendered_full_prompt|safe }}
+                      {% else %}
+                        {{ msg.full_prompt }}
+                      {% endif %}
+                    </div>
+                    <div class="tab-pane fade" id="raw-{{ msg.id }}" role="tabpanel" aria-labelledby="raw-tab-{{ msg.id }}">
+                      <div style="background:#0a0a0a; border:1px solid var(--border); border-radius:6px; padding:8px; max-height:700px; overflow:auto;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                          <small style="color:var(--text-dim); font-size:10px;"><i class="bi bi-info-circle"></i> Raw full_prompt from DB (no HTML tags, DB clean) – {{ msg.full_prompt|length if msg.full_prompt else 0 }} chars – to figure out what parsing is doing</small>
+                          <button class="btn btn-sm" onclick="navigator.clipboard.writeText(document.getElementById('raw-pre-{{ msg.id }}').textContent).then(()=>{this.innerHTML='✅ Copied raw'; setTimeout(()=>{this.innerHTML='Copy raw';},2000)})" style="font-size:10px; background:var(--bg3); border:1px solid var(--border);">Copy raw</button>
+                        </div>
+                        <pre id="raw-pre-{{ msg.id }}" style="margin:0; padding:10px; background:#0f0f17; color:var(--text-dim); font-family:JetBrains Mono, monospace; font-size:11px; white-space:pre-wrap; word-break:break-all; max-height:600px; overflow:auto;">{{ msg.full_prompt }}</pre>
+                      </div>
+                      <div style="margin-top:8px; padding:6px; background:rgba(107,114,128,0.1); border-radius:4px; font-size:10px; color:var(--text-dim);">
+                        <strong>Parsing log:</strong> File paths found: {{ msg.file_paths|length if msg.file_paths else 0 }} – {{ msg.file_paths|join(', ') if msg.file_paths else 'none' }}<br>
+                        Code blocks count: {{ msg.code_blocks_count }} – parsed when reading via _parse_code_blocks, _detect_file_path_explicit, render_full_prompt_collapsible_html<br>
+                        DB has HTML tags? {{ 'Yes' if '<div' in (msg.full_prompt or '') or '<span' in (msg.full_prompt or '') else 'No (DB clean, no HTML tags, parsed when reading)' }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+            {% endif %}
+            {% else %}
+            <div class="text-center py-4 text-dim">
+              <i class="bi bi-chat" style="font-size:24px;"></i>
+              <p class="small mt-2">No messages yet. Start the conversation or clone an agent.</p>
+            </div>
+            {% endfor %}
+
+            {# Thinking indicators for working agents #}
+            {% for agent in agents if agent.status == 'working' %}
+            <div class="chat-item assistant thinking-card">
+              <div class="chat-header">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="chat-role"><i class="bi bi-robot"></i> {{ agent.name }} <span class="reasoning-icon">🧠</span> thinking</span>
+                  <span class="small text-dim" style="font-size:11px;">reasoning • has read all chats</span>
+                </div>
+                <span class="chat-time">now</span>
+              </div>
+              <div class="chat-briefing d-flex align-items-center gap-3">
+                <span class="agent-thinking">
+                  <span class="reasoning-icon">⚙️</span>
+                  Reasoning
+                  <span class="thinking-dots"><span></span><span></span><span></span></span>
+                </span>
+                <small class="text-dim" style="font-size:11px;">Generating response with context of {{ messages|length }} previous messages...</small>
+              </div>
+              <div class="mt-2 small text-dim" style="font-size:10px;">
+                <i class="bi bi-eye"></i> Has read all {{ messages|length }} chats • 
+                <i class="bi bi-code"></i> Request logged as code in full prompt will be visible after completion
+              </div>
+            </div>
+            {% endfor %}
+
+            <!-- Original task prompt as first item if not in messages -->
+            {% if task.full_prompt and messages|length==0 %}
+            <div class="chat-item briefing">
+              <div class="chat-header">
+                <span class="chat-role"><i class="bi bi-file-text"></i> original task</span>
+                <span class="chat-time">{{ task.created_at.strftime('%H:%M • %b %d') }}</span>
+              </div>
+              <div class="chat-briefing">{{ task.description or task.title }}</div>
+              {% if task.full_prompt %}
+                <button class="btn-expand" data-target="prompt-original">+ show full prompt</button>
+                <div id="prompt-original" class="chat-full-prompt">{{ task.full_prompt }}</div>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- Add message form with @ mention autocomplete + Voice record button (Meta Muse) -->
+          <div class="mt-4 p-3 rounded" style="background: var(--bg3); border: 1px dashed var(--border);">
+            <h6 class="small fw-bold mb-2">Add to timeline 
+              <small class="text-dim" style="font-size:10px;">Type @ to mention bots and people • 🎤 Voice fills message via Meta Muse</small>
+            </h6>
+            <form method="POST" action="{{ url_for('tasks.add_message', team_slug=team.slug, project_slug=project.slug, task_id=task.id) }}">
+              <div class="mb-2 position-relative">
+                <textarea id="chat-content-input" name="content" class="form-control" rows="2" placeholder="Briefing / summary (visible by default) - type @ to mention bots like @JOANA_BOT or click 🎤 Record to talk" required></textarea>
+                <div id="mention-dropdown" class="mention-dropdown d-none"></div>
+              </div>
+              {# Mention data for JS #}
+              <script id="mention-data" type="application/json">{{ mention_data|tojson }}</script>
+              <div class="mb-2 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div class="d-flex gap-2 small text-dim" style="font-size:10px;">
+                  <span><i class="bi bi-at"></i> @ to mention:</span>
+                  <span class="badge bg-primary" style="font-size:9px;">{{ mention_data.inTask|length }} in this task</span>
+                  <span class="badge bg-secondary" style="font-size:9px;">{{ mention_data.inProject|length }} in project</span>
+                  <span class="badge bg-info" style="font-size:9px;">{{ mention_data.people|length }} people</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <button type="button" id="voice-mic-btn" class="btn btn-ghost btn-sm" style="font-size:11px;padding:3px 8px;" title="Record voice via Meta Muse - fills message">
+                    <i class="bi bi-mic"></i> Record
+                  </button>
+                  <small id="voice-status" class="text-dim" style="font-size:10px;"></small>
+                </div>
+              </div>
+              <div id="voice-recording-indicator" class="mb-2 p-2 rounded d-none" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);font-size:11px;">
+                <span class="recording-dot"></span> Listening...
+              </div>
+              <div class="mb-2">
+                <textarea name="full_prompt" class="form-control" rows="3" placeholder="Full prompt (hidden behind + button) - detailed instructions, code, logs..."></textarea>
+              </div>
+              <div class="d-flex gap-2">
+                <select name="role" class="form-select form-select-sm" style="width:120px;">
+                  <option value="user">user</option>
+                  <option value="assistant">assistant</option>
+                  <option value="briefing">briefing</option>
+                  <option value="system">system</option>
+                </select>
+                <select name="message_type" class="form-select form-select-sm" style="width:120px;">
+                  <option value="chat">chat</option>
+                  <option value="briefing">briefing</option>
+                  <option value="log">log</option>
+                  <option value="commit">commit</option>
+                  <option value="test">test</option>
+                </select>
+                <button class="btn btn-primary-custom btn-sm ms-auto"><i class="bi bi-send"></i> Add Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agents sidebar -->
+      <div class="col-lg-4">
+        <div class="card-custom p-3 mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 class="fw-bold mb-0"><i class="bi bi-cpu"></i> AI Agents ({{ agents|length }})</h6>
+            <button class="btn btn-primary-custom btn-sm" data-bs-toggle="modal" data-bs-target="#cloneAgentModal"><i class="bi bi-plus"></i> Clone Agent</button>
+          </div>
+
+          <div class="mb-3 p-2 rounded small" style="background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15)); border:1px solid rgba(99,102,241,0.3);">
+            <div class="fw-bold"><i class="bi bi-stars"></i> Master: {{ master_agent.name }}</div>
+            <div class="text-dim" style="font-size:11px;">{{ master_agent.role }} • 12 skills • All clones inherit these superpowers but specialize for this task</div>
+          </div>
+
+          {% for agent in agents %}
+          <div class="agent-card mb-2 {% if agent.status=='working' %}thinking-card{% endif %}">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <div>
+                <div class="fw-bold small d-flex align-items-center gap-2">
+                  <a href="{{ url_for('agents.view', team_slug=team.slug, project_slug=project.slug, task_id=task.id, agent_id=agent.id) }}" class="text-white text-decoration-none">{{ agent.name }}</a>
+                  {% if agent.status=='working' %}
+                  <span class="agent-thinking">
+                    <span class="reasoning-icon">🧠</span>
+                    thinking
+                    <span class="thinking-dots"><span></span><span></span><span></span></span>
+                  </span>
+                  {% endif %}
+                </div>
+                <div class="text-dim d-flex align-items-center gap-2" style="font-size:11px;">
+                  {{ agent.role }} • 
+                  <span class="{% if agent.status=='working' %}status-working{% endif %}">
+                    {% if agent.status=='working' %}
+                    <span class="reasoning-icon">⚙️</span> reasoning
+                    {% else %}
+                    {{ agent.status }}
+                    {% endif %}
+                  </span>
+                  {% if agent.voice_name %}
+                  <span class="badge bg-primary" style="font-size:8px;" title="Voice: {{ agent.voice_name }} ({{ agent.voice_id }})"><i class="bi bi-mic"></i> {{ agent.voice_name }}</span>
+                  {% endif %}
+                  {% if agent.status=='working' %}
+                  <span class="thinking-dots"><span></span><span></span><span></span></span>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="d-flex gap-1">
+                <form method="POST" action="{{ url_for('agents.run_agent', team_slug=team.slug, project_slug=project.slug, task_id=task.id, agent_id=agent.id) }}"><button class="btn btn-ghost btn-sm" style="padding:2px 6px;" title="Run agent - has read all chats"><i class="bi bi-play"></i></button></form>
+                <form method="POST" action="{{ url_for('agents.delete', team_slug=team.slug, project_slug=project.slug, task_id=task.id, agent_id=agent.id) }}" onsubmit="return confirm('Delete agent?')"><button class="btn btn-ghost btn-sm text-danger" style="padding:2px 6px;"><i class="bi bi-x"></i></button></form>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap">
+              {% if agent.get_skills()|length == 0 %}
+                <span class="skill-badge" style="background:rgba(100,100,100,0.15);border-color:rgba(100,100,100,0.3);">⚪ No skills (custom)</span>
+              {% else %}
+                {% for skill in agent.get_skills()[:4] %}
+                  <span class="skill-badge">{{ skill.icon }} {{ skill.name }}</span>
+                {% endfor %}
+                {% if agent.get_skills()|length>4 %}<span class="skill-badge">+{{ agent.get_skills()|length-4 }}</span>{% endif %}
+              {% endif %}
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-1">
+              <div class="small text-dim" style="font-size:10px;">
+                Cloned from {{ agent.cloned_from }} • {{ agent.created_at|shortdate }}
+                {% if agent.is_alive() %}
+                  <span class="badge bg-success" style="font-size:8px;" title="Alive - expires in {{ agent.time_to_expiry() }}s"><i class="bi bi-heart-pulse"></i> alive</span>
+                {% else %}
+                  <span class="badge bg-danger" style="font-size:8px;" title="Expired {{ agent.time_to_expiry() }}s ago"><i class="bi bi-heartbreak"></i> expired</span>
+                {% endif %}
+              </div>
+              <div class="small d-flex gap-1" style="font-size:10px;">
+                <span class="badge bg-success" style="font-size:9px;" title="{{ agent.message_reads.count() }} chats read">
+                  <i class="bi bi-eye"></i> {{ agent.message_reads.count() }}/{{ messages|length }} read
+                </span>
+                {% if agent.time_to_expiry() > 0 and agent.time_to_expiry() < 999999 %}
+                <span class="badge bg-custom3 border border-custom" style="font-size:8px;" title="Lifespan {{ agent.lifespan_seconds }}s, last active {{ agent.last_active_at|shortdate if agent.last_active_at else 'never' }}">
+                  <i class="bi bi-hourglass-split"></i> {{ agent.time_to_expiry() }}s
+                </span>
+                {% endif %}
+              </div>
+            </div>
+            {% if not agent.is_alive() %}
+            <div class="mt-1 p-1 rounded small" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);font-size:10px;color:#ef4444;">
+              <i class="bi bi-exclamation-triangle"></i> This bot expired (low lifespan {{ agent.lifespan_seconds }}s). Run it to extend lifespan (heartbeat) or clone new one.
+            </div>
+            {% endif %}
+          </div>
+          {% else %}
+          <div class="text-center py-3 text-dim small">
+            <i class="bi bi-robot" style="font-size:20px;"></i>
+            <p class="mt-2 mb-1">No agents yet</p>
+            <p style="font-size:11px;">Clone the master agent to start working on this task. Each clone gets all skills but focuses on this task.</p>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="card-custom p-3 mb-3">
+          <h6 class="small fw-bold mb-2"><i class="bi bi-box"></i> Project Workspace (Sandbox)</h6>
+          {% if project_sandbox %}
+            <div class="small mb-2 d-flex justify-content-between align-items-center">
+              <span><span class="text-dim">Name:</span> <span class="fw-bold">{{ project_sandbox.name }}</span></span>
+              <span class="badge {% if project_sandbox.status in ['Started','Ready'] %}bg-success{% elif project_sandbox.status in ['Scheduled','Creating'] %}bg-warning text-dark{% elif project_sandbox.status in ['Finished','terminated','Error'] %}bg-danger{% else %}bg-secondary{% endif %}" style="font-size:9px;">{{ project_sandbox.status }}</span>
+            </div>
+            <div class="small mb-1"><span class="text-dim">Type:</span> {{ project_sandbox.type }} ({{ project_sandbox.runtime }})</div>
+            <div class="small mb-1"><span class="text-dim">Volume:</span> {{ project_sandbox.volume_name or 'none' }}</div>
+            <div class="small mb-1"><span class="text-dim">ID:</span> <code style="font-size:10px;">{{ project_sandbox.modal_sandbox_id[:12] if project_sandbox.modal_sandbox_id else 'none' }}</code></div>
+            {% if project_sandbox.tunnel_url %}
+            <div class="small mb-2 p-2 rounded" style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);">
+              <div class="text-success small fw-bold">🚀 Created HTTP with tunnel!</div>
+              <div class="small"><span class="text-dim">Public URL:</span> <a href="{{ project_sandbox.tunnel_url }}" target="_blank" style="color:#10b981;word-break:break-all;font-size:11px;">{{ project_sandbox.tunnel_url }}</a></div>
+              {% if project_sandbox.tunnel_urls_json %}
+                {% set tunnels = project_sandbox.tunnels() %}
+                {% for port, info in tunnels.items() %}
+                  {% if port != project_sandbox.tunnel_port|string %}
+                  <div class="small"><span class="text-dim">Port {{ port }}:</span> <a href="{{ info.url if info is mapping else info }}" target="_blank" style="color:#8b5cf6;font-size:10px;word-break:break-all;">{{ info.url if info is mapping else info }}</a></div>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+              <div class="small mt-1"><span class="text-dim">Endpoints:</span> POST /edit, GET /heartbeat</div>
+            </div>
+            {% else %}
+            <div class="small mb-2 p-2 rounded" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);">
+              <i class="bi bi-hourglass-split"></i> Waiting for tunnel to establish...
+            </div>
+            {% endif %}
+            <div class="small mb-1"><span class="text-dim">Git:</span> {{ project_sandbox.git_repo_url or 'not set' }}</div>
+            <div class="small mb-1"><span class="text-dim">Dev:</span> {{ project_sandbox.dev_command or 'not set' }}</div>
+            <div class="small mb-1"><span class="text-dim">Heartbeat:</span> {{ project_sandbox.last_heartbeat|shortdate if project_sandbox.last_heartbeat else 'never' }} {% if project_sandbox.is_alive() %}<span class="badge bg-success" style="font-size:8px;">alive</span>{% else %}<span class="badge bg-danger" style="font-size:8px;">expired</span>{% endif %}</div>
+            <div class="d-flex gap-1 mt-2">
+              <form method="POST" action="{{ url_for('project_sandbox.sandbox_action', team_slug=team.slug, project_slug=project.slug, action='start') }}"><button class="btn btn-ghost btn-sm" style="font-size:10px;"><i class="bi bi-play"></i> Start</button></form>
+              <form method="POST" action="{{ url_for('project_sandbox.sandbox_action', team_slug=team.slug, project_slug=project.slug, action='stop') }}"><button class="btn btn-ghost btn-sm" style="font-size:10px;"><i class="bi bi-stop"></i> Stop</button></form>
+              <form method="POST" action="{{ url_for('project_sandbox.sandbox_action', team_slug=team.slug, project_slug=project.slug, action='restart') }}"><button class="btn btn-ghost btn-sm" style="font-size:10px;"><i class="bi bi-arrow-clockwise"></i> Restart</button></form>
+            </div>
+            {% if project_sandboxes|length > 1 %}
+            <div class="mt-2 small text-dim" style="font-size:10px;">Note: {{ project_sandboxes|length }} sandboxes for this project (future: multiples). Showing primary.</div>
+            {% endif %}
+          {% else %}
+            <div class="small text-dim mb-2">No sandbox yet for this project. Create one from project page with +Add Sandbox.</div>
+            <a href="{{ url_for('projects.view', team_slug=team.slug, project_slug=project.slug) }}" class="btn btn-ghost btn-sm" style="font-size:10px;"><i class="bi bi-plus"></i> Go to Project → Add Sandbox</a>
+          {% endif %}
+
+          {% if recent_activities %}
+          <hr class="border-custom my-2">
+          <h6 class="small fw-bold mb-1" style="font-size:11px;"><i class="bi bi-activity"></i> Recent Activity (cross-task visible)</h6>
+          {% for act in recent_activities %}
+            <div class="small mb-1 p-1 rounded" style="background:var(--bg3);border:1px solid var(--border);font-size:10px;">
+              <span class="badge bg-secondary" style="font-size:8px;">{{ act.type }}</span>
+              <span>{{ act.summary[:80] }}</span>
+              <span class="text-dim">• {{ act.created_at.strftime('%H:%M') if act.created_at }}</span>
+              {% if act.task_id and act.task_id != task.id %}
+                <span class="text-dim">(from other task: {{ act.task_id }})</span>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <small class="text-dim" style="font-size:9px;">Shows server restarting from other tasks while chatting here</small>
+          {% endif %}
+
+          <hr class="border-custom my-2">
+          <h6 class="small fw-bold mb-1" style="font-size:11px;"><i class="bi bi-folder"></i> Files in Sandbox (per-project, no volume, filesystem API)</h6>
+          <div id="task-sandbox-files-list" class="small p-2 rounded" style="background:var(--bg3);border:1px solid var(--border);max-height:100px;overflow-y:auto;font-size:10px;">
+            <span class="text-dim">Loading per-project files via filesystem API...</span>
+          </div>
+          <div class="d-flex gap-1 mt-1">
+            <button id="task-refresh-files-btn" class="btn btn-ghost btn-sm" style="font-size:9px;"><i class="bi bi-arrow-clockwise"></i> Refresh</button>
+            <a href="{{ url_for('projects.view', team_slug=team.slug, project_slug=project.slug) }}" class="btn btn-ghost btn-sm" style="font-size:9px;"><i class="bi bi-cloud-upload"></i> Upload via Project</a>
+          </div>
+          <small class="text-dim" style="font-size:9px;">Per-project path /workspace - visible across all tasks in same project (no volume)</small>
+          <div id="task-exec-output" class="small p-2 rounded mt-2" style="background:#0f1410; border:1px solid var(--border); max-height:120px; overflow-y:auto; font-size:10px; font-family:JetBrains Mono, monospace; color:#86efac; white-space:pre-wrap;">
+            <span class="text-dim">Exec log will appear here - shows trying to create file, mkdir -p parent dirs, typo correction worksapce->workspace, and file creation result. Click Exec on green code blocks to save files to Modal sandbox.</span>
+          </div>
+        </div>
+
+        <div class="card-custom p-3">
+          <h6 class="small fw-bold mb-2">Task Details</h6>
+          <div class="small mb-1"><span class="text-dim">Project:</span> {{ project.name }}</div>
+          <div class="small mb-1"><span class="text-dim">Created by:</span> {{ task.creator.username }}</div>
+          <div class="small mb-1"><span class="text-dim">Assignee:</span> {{ task.assignee.username if task.assignee else 'Unassigned' }}</div>
+          <div class="small mb-2"><span class="text-dim">Position:</span> #{{ task.position }}</div>
+          {% if task.due_date %}<div class="small"><span class="text-dim">Due:</span> {{ task.due_date|shortdate }}</div>{% endif %}
+          <hr class="border-custom my-2">
+          <div class="small text-dim" style="font-size:11px;">
+            💡 <b>How chat view works:</b><br>
+            • Each task entry shows briefing summary<br>
+            • Click <code>+ show full prompt</code> to reveal full prompt / code / logs<br>
+            • Agents leave their work as chat entries<br>
+            • Perfect for tracking AI agent work + workspace status
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Clone Agent Modal -->
+<div class="modal fade" id="cloneAgentModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background: var(--bg2); border:1px solid var(--border);">
+      <div class="modal-header border-custom">
+        <h5 class="modal-title fw-bold"><i class="bi bi-cpu"></i> Clone Master Agent for "{{ task.title }}"</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form method="POST" action="{{ url_for('agents.create', team_slug=team.slug, project_slug=project.slug, task_id=task.id) }}">
+        <input type="hidden" name="skills_present" value="1">
+        <div class="modal-body">
+          <div class="alert d-flex gap-2 small" style="background: rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.3);">
+            <i class="bi bi-info-circle"></i>
+            <div>You are cloning <b>{{ master_agent.name }}</b> — elite agent with 12 skills. Uncheck all to create bot with 0 skills (custom). Duplicate names not allowed.</div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3"><label class="form-label small">Clone Name</label><input name="name" class="form-control" placeholder="e.g. Auth Specialist #1"></div>
+            <div class="col-md-6 mb-3"><label class="form-label small">Specialized Role</label><input name="role" class="form-control" placeholder="e.g. Backend Engineer, QA, DevOps" value="{{ task.title[:30] }} Specialist"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label small"><i class="bi bi-mic"></i> Voice (Cartesia TTS) <span class="text-dim">- for play button on messages</span></label>
+              <select name="voice_id" id="voice-select" class="form-select">
+                <option value="">No voice (silent)</option>
+                <!-- Populated via JS from voices.json -->
+              </select>
+              <input type="hidden" name="voice_name" id="voice-name-input">
+              <small class="text-dim" style="font-size:10px;">Choose voice for this agent's messages - will show 🔊 play button</small>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label small">Voice Preview</label>
+              <div class="d-flex gap-2">
+                <button type="button" id="voice-preview-btn" class="btn btn-ghost btn-sm"><i class="bi bi-play"></i> Preview</button>
+                <span id="voice-preview-status" class="small text-dim"></span>
+              </div>
+              <small class="text-dim" style="font-size:10px;">Plays sample: "Hello, I'm {agent name}, ready to work on {{ task.title }}!"</small>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small">System Prompt Override <span class="text-dim">(optional, inherits master if empty)</span></label>
+            <textarea name="system_prompt" class="form-control" rows="4" placeholder="Customize how this clone should behave for this task...
+
+Leave empty to use master prompt + task context automatically"></textarea>
+          </div>
+
+          <div class="mb-2 d-flex justify-content-between align-items-center">
+            <label class="form-label small mb-0">Skills to include (<span id="skills-count">{{ master_skills|length }}</span>/{{ master_skills|length }})</label>
+            <a href="#" id="select-all-skills" class="small" style="color:var(--primary);">Select all</a>
+          </div>
+          <div class="row g-2">
+            {% for skill in master_skills %}
+            <div class="col-md-6">
+              <label class="d-flex align-items-start p-2 rounded" style="background:var(--bg3);border:1px solid var(--border);cursor:pointer;">
+                <input type="checkbox" name="skills" value="{{ skill.id }}" class="form-check-input me-2 mt-1 skill-toggle" checked>
+                <div class="flex-grow-1">
+                  <div class="small fw-bold">{{ skill.icon }} {{ skill.name }} <span class="text-dim">• {{ skill.level }}%</span></div>
+                  <div class="small text-dim" style="font-size:11px;">{{ skill.desc }}</div>
+                  <div class="skill-level"><div class="skill-level-fill" style="width:{{ skill.level }}%"></div></div>
+                </div>
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="modal-footer border-custom">
+          <button type="button" class="btn btn-ghost" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary-custom"><i class="bi bi-plus"></i> Clone Agent</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/mention.js') }}"></script>
+<script src="{{ url_for('static', filename='js/voice.js') }}"></script>
+<script>
+// Voice selection for agent creation - load from voices.json
+document.addEventListener('DOMContentLoaded', () => {
+  const voiceSelect = document.getElementById('voice-select');
+  const voiceNameInput = document.getElementById('voice-name-input');
+  const previewBtn = document.getElementById('voice-preview-btn');
+  const previewStatus = document.getElementById('voice-preview-status');
+
+  if (!voiceSelect) return;
+
+  // Load voices.json (filtered with id)
+  fetch('{{ url_for('static', filename='data/voices.json') }}')
+    .then(r => r.json())
+    .then(voices => {
+      // Also try app/voices/voices.json path fallback
+      return voices;
+    })
+    .catch(() => {
+      // Fallback to second path
+      return fetch('/static/data/voices.json').then(r => r.json()).catch(() => []);
+    })
+    .then(voices => {
+      // If still empty, try loading from /app/voices/voices.json via static? We'll try direct fetch
+      if (!voices || voices.length === 0) {
+        // Try alternative path
+        return fetch('{{ url_for('static', filename='data/voices.json') }}').then(r => r.json()).catch(() => []);
+      }
+      return voices;
+    })
+    .then(voices => {
+      if (!voices || voices.length === 0) {
+        // Final fallback: fetch from tts_cartesia voices.json if available? Use hardcoded top 5
+        voices = [
+          {id: "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4", name: "Skylar", gender: "feminine", description: "Approachable American female"},
+          {id: "47c38ca4-5f35-497b-b1a3-415245fb35e1", name: "Daniel", gender: "masculine", description: "Deep British male"},
+          {id: "62ae83ad-4f6a-430b-af41-a9bede9286ca", name: "Gemma", gender: "feminine", description: "Warm British female"},
+          {id: "30894953-bcce-41fe-892c-15ce19c843ff", name: "Parker", gender: "masculine", description: "Casual American male"},
+          {id: "ef191366-f52f-447a-a398-ed8c0f2943a1", name: "Archie", gender: "masculine", description: "Energetic British male"}
+        ];
+      }
+
+      // Populate dropdown
+      voices.slice(0, 30).forEach(v => {  // Show first 30 for performance
+        const opt = document.createElement('option');
+        opt.value = v.id;
+        opt.textContent = `${v.name} (${v.gender || ''} - ${v.language || ''}) - ${v.description ? v.description.substring(0,40) : ''}`;
+        opt.dataset.name = v.name;
+        voiceSelect.appendChild(opt);
+      });
+
+      // If agent has existing voice, select it (for edit)
+      voiceSelect.addEventListener('change', () => {
+        const selected = voiceSelect.options[voiceSelect.selectedIndex];
+        if (voiceNameInput) voiceNameInput.value = selected.dataset.name || selected.textContent.split(' ')[0];
+      });
+
+      console.log(`[Voice] Loaded ${voices.length} voices for agent creation`);
+
+      // Preview button
+      if (previewBtn) {
+        previewBtn.addEventListener('click', async () => {
+          const voiceId = voiceSelect.value;
+          const voiceName = voiceSelect.options[voiceSelect.selectedIndex]?.dataset.name || 'Agent';
+          if (!voiceId) {
+            if (previewStatus) previewStatus.textContent = 'Select a voice first';
+            return;
+          }
+          if (previewStatus) previewStatus.textContent = '🔊 Generating preview...';
+          try {
+            const resp = await fetch('/api/voice/cartesia/tts', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                transcript: `Hello, I'm ${voiceName}, ready to work on {{ task.title }}!`,
+                voice_id: voiceId,
+                model_id: 'sonic-3.6'
+              })
+            });
+            const data = await resp.json();
+            if (previewStatus) {
+              if (data.mock) {
+                previewStatus.textContent = `🔊 Preview mock: ${data.voice_id} - set CARTESIA_API_KEY for real audio`;
+              } else {
+                previewStatus.textContent = `✅ Preview generated ${data.wav_bytes} bytes`;
+              }
+            }
+            // If real wav returned as url, play it
+            if (data.audio_url) {
+              const audio = new Audio(data.audio_url);
+              audio.play();
+            }
+          } catch (e) {
+            if (previewStatus) previewStatus.textContent = `❌ Preview failed: ${e.message}`;
+          }
+        });
+      }
+    })
+    .catch(err => {
+      console.warn('[Voice] Failed to load voices.json', err);
+      if (previewStatus) previewStatus.textContent = 'Failed to load voices';
+    });
+
+  // Per-project file list via filesystem API (no volume) - visible in task channel - fixed duplicate declaration that caused JSON.parse error and no exec buttons
+  let taskFilesListEl = document.getElementById('task-sandbox-files-list');
+  if (taskFilesListEl) {
+    const teamSlug = "{{ team.slug }}";
+    const projectSlug = "{{ project.slug }}";
+    function loadTaskFiles(path = '/workspace') {
+      taskFilesListEl.innerHTML = '<span class="text-dim">Loading ' + path + ' (per-project, no volume)...</span>';
+      fetch(`/projects/team/${teamSlug}/${projectSlug}/sandbox/files?path=${encodeURIComponent(path)}`, {
+        headers: {'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest'}
+      })
+        .then(async r => {
+          const text = await r.text();
+          try { return JSON.parse(text); } catch(e) { throw new Error(`Non-JSON: ${text.substring(0,200)}`); }
+        })
+        .then(data => {
+          if (data.files && data.files.length > 0) {
+            let html = '';
+            data.files.forEach(f => {
+              html += `<div><i class="bi bi-file"></i> ${f.name} <small class="text-dim">(${f.type}, ${f.size} bytes)</small> - ${f.path}</div>`;
+            });
+            taskFilesListEl.innerHTML = html;
+          } else {
+            taskFilesListEl.innerHTML = '<span class="text-dim">No files in ' + path + ' yet. Upload via Project → per-project path /workspace (filesystem API, no volume)</span>';
+          }
+          if (data.error) {
+            taskFilesListEl.innerHTML = `<span class="text-danger">${data.error}</span><br><span class="text-dim">No files yet</span>`;
+          }
+          if (data.mock) {
+            taskFilesListEl.innerHTML += '<br><small class="text-dim">Mock/error mode - please Recreate sandbox</small>';
+          }
+        })
+        .catch(err => {
+          taskFilesListEl.innerHTML = `<span class="text-danger">Failed to load files: ${err} - fixed to always return JSON</span>`;
+        });
+    }
+    loadTaskFiles('/workspace');
+    document.getElementById('task-refresh-files-btn')?.addEventListener('click', () => loadTaskFiles('/workspace'));
+  }
+
+  // === Exec buttons for code blocks - server-rendered green divs with Exec → filename (only when explicit # File: /workspace/...) ===
+  // Global delegation handles both whole-message Execute in Sandbox and per-block Exec buttons from collapsible panels
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.execute-sandbox-btn, .exec-block-btn, .exec-block-btn-full');
+    if (!btn) return;
+    // Don't handle if already handling via direct listener and disabled
+    if (btn.disabled) return;
+
+    const messageId = btn.dataset.messageId;
+    const taskId = btn.dataset.taskId;
+    const teamSlug = btn.dataset.teamSlug;
+    const projectSlug = btn.dataset.projectSlug;
+    const blockIdx = btn.dataset.blockIdx; // may be undefined for whole-message exec
+    if (!messageId || !taskId) return;
+
+    const isPerBlock = blockIdx !== undefined && blockIdx !== null && blockIdx !== '';
+    const orig = btn.innerHTML;
+    btn.innerHTML = isPerBlock ? '🧠 Executing block...' : '🧠 Executing all blocks...';
+    btn.disabled = true;
+
+    try {
+      const body = isPerBlock ? JSON.stringify({block_idx: parseInt(blockIdx)}) : JSON.stringify({});
+      const resp = await fetch(`/projects/team/${teamSlug}/${projectSlug}/tasks/${taskId}/messages/${messageId}/execute`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','Accept':'application/json','X-Requested-With':'XMLHttpRequest'},
+        body: body
+      });
+      const data = await resp.json();
+      if (data.error) {
+        alert(`❌ Exec ${isPerBlock ? 'block '+(parseInt(blockIdx)+1) : 'all'} failed: ${data.error}`);
+        btn.innerHTML = '❌ Failed';
+      } else {
+        const files = data.files_written || [];
+        const fileList = files.map(f=>f.remote_path).join(', ');
+        btn.innerHTML = `✅ Wrote ${files.length} file${files.length!=1?'s':''}`;
+        // Show success
+        const execOutput = document.getElementById('task-exec-output') || document.getElementById('exec-output');
+        if (execOutput) {
+          execOutput.textContent = `✅ Executed ${isPerBlock ? 'block '+(parseInt(blockIdx)+1) : 'all blocks'} of message ${messageId} → ${fileList}\n${data.request_log ? data.request_log.substring(0,800) : ''}`;
+        }
+        // Refresh files list
+        const refreshBtn = document.getElementById('task-refresh-files-btn') || document.getElementById('refresh-files-btn');
+        if (refreshBtn) refreshBtn.click();
+        setTimeout(()=>{ btn.innerHTML = orig; btn.disabled=false; }, 3000);
+        return;
+      }
+    } catch (err) {
+      console.error('Exec failed', err);
+      btn.innerHTML = `❌ ${err.message.substring(0,20)}`;
+      alert(`Exec failed: ${err}`);
+    }
+    setTimeout(()=>{ btn.innerHTML = orig; btn.disabled=false; }, 3000);
+  });
+
+  // Thinking symbol when pressing button to add agent to chat (clone) - page waiting for agent created in modal
+  const cloneForm = document.querySelector('#cloneAgentModal form');
+  if (cloneForm) {
+    cloneForm.addEventListener('submit', (e) => {
+      const nameInput = cloneForm.querySelector('input[name="name"]');
+      const agentName = nameInput ? nameInput.value || 'New Agent' : 'New Agent';
+      const agentsContainer = document.querySelector('.col-lg-4 .card-custom');
+      const timeline = document.querySelector('.chat-timeline');
+      
+      // Show thinking in agents sidebar
+      if (agentsContainer) {
+        const thinkingCard = document.createElement('div');
+        thinkingCard.className = 'agent-card mb-2 thinking-card';
+        thinkingCard.innerHTML = `
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <div class="fw-bold small d-flex align-items-center gap-2">
+                ${agentName} <span class="agent-thinking"><span class="reasoning-icon">🧠</span> creating <span class="thinking-dots"><span></span><span></span><span></span></span></span>
+              </div>
+              <div class="text-dim" style="font-size:11px;">Creating in Modal... • waiting for sandbox</div>
+            </div>
+          </div>
+          <div class="small text-dim" style="font-size:10px;">Cloning master agent with all skills - will read all chats</div>
+        `;
+        agentsContainer.appendChild(thinkingCard);
+        console.log(`[Thinking] Clone agent ${agentName} - showing thinking symbol, page waiting for agent created in modal`);
+      }
+      
+      // Show thinking in chat timeline as system log
+      if (timeline) {
+        const thinkingChat = document.createElement('div');
+        thinkingChat.className = 'chat-item system system-compact thinking-card';
+        thinkingChat.innerHTML = `
+          <div class="d-flex align-items-center gap-2" style="font-size:11px;">
+            <span class="chat-role" style="font-size:9px;background:rgba(99,102,241,0.2);"><i class="bi bi-gear"></i> SYS</span>
+            <span class="text-dim"><span class="reasoning-icon">⚙️</span> Creating agent ${agentName} in Modal... <span class="thinking-dots"><span></span><span></span><span></span></span></span>
+            <span class="ms-auto chat-time" style="font-size:9px;">now</span>
+          </div>
+        `;
+        timeline.appendChild(thinkingChat);
+        thinkingChat.scrollIntoView({behavior: 'smooth'});
+      }
+    });
+  }
+
+  // Thinking symbol when sending message and waiting for reply - agent panel created instantly with thinking
+  const messageForm = document.querySelector('form[action*="/message"]');
+  if (messageForm) {
+    messageForm.addEventListener('submit', (e) => {
+      const textarea = document.getElementById('chat-content-input');
+      const content = textarea ? textarea.value : '';
+      const timeline = document.querySelector('.chat-timeline');
+      const mentionDataEl = document.getElementById('mention-data');
+      
+      // Detect mentioned agents from content
+      let mentionedNames = [];
+      if (content) {
+        const lowerContent = content.toLowerCase();
+        try {
+          const mentionData = JSON.parse(mentionDataEl ? mentionDataEl.textContent : '{}');
+          const allAgents = [...(mentionData.inTask || []), ...(mentionData.inProject || [])];
+          allAgents.forEach(ag => {
+            if (lowerContent.includes(ag.name.toLowerCase()) || lowerContent.includes('@' + ag.name.toLowerCase())) {
+              if (!mentionedNames.includes(ag.name)) mentionedNames.push(ag.name);
+            }
+          });
+        } catch {}
+      }
+      
+      if (mentionedNames.length > 0 && timeline) {
+        console.log(`[Thinking] Message mentions ${mentionedNames.join(', ')} - creating thinking panels instantly`);
+        mentionedNames.slice(0,2).forEach(name => {
+          const thinkingChat = document.createElement('div');
+          thinkingChat.className = 'chat-item assistant thinking-card';
+          thinkingChat.innerHTML = `
+            <div class="chat-header">
+              <div class="d-flex align-items-center gap-2">
+                <span class="chat-role"><i class="bi bi-robot"></i> ${name} <span class="reasoning-icon">🧠</span> thinking</span>
+                <span class="small text-dim" style="font-size:11px;">has read all chats, generating response...</span>
+              </div>
+              <span class="chat-time">now</span>
+            </div>
+            <div class="chat-briefing d-flex align-items-center gap-3">
+              <span class="agent-thinking">
+                <span class="reasoning-icon">⚙️</span>
+                Reasoning
+                <span class="thinking-dots"><span></span><span></span><span></span></span>
+              </span>
+              <small class="text-dim">Context: ${content.substring(0,60)}... - will make changes to /workspace via upload_file_to_sandbox</small>
+            </div>
+          `;
+          timeline.appendChild(thinkingChat);
+        });
+        timeline.lastElementChild?.scrollIntoView({behavior: 'smooth'});
+      }
+    });
+  }
+});
+</script>
+{% endblock %}

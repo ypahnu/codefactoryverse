@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}{{ team.name }} - Teams{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-start mb-4">
+    <div class="d-flex align-items-center">
+      <div class="team-avatar me-3" style="background: {{ team.avatar_color }}; width:56px;height:56px;font-size:22px;">{{ team.name[0].upper() }}</div>
+      <div>
+        <h3 class="fw-bold mb-0">{{ team.name }}</h3>
+        <p class="text-dim mb-0 small">{{ team.description }}</p>
+        <small class="text-dim">{{ members|length }} members • {{ projects|length }} projects • Created {{ team.created_at|shortdate }}</small>
+      </div>
+    </div>
+    <div class="d-flex gap-2">
+      <a href="{{ url_for('projects.create', team_slug=team.slug) }}" class="btn btn-primary-custom"><i class="bi bi-plus"></i> New Project</a>
+      {% if is_owner %}
+      <form method="POST" action="{{ url_for('teams.delete', slug=team.slug) }}" onsubmit="return confirm('Delete team?')"><button class="btn btn-ghost"><i class="bi bi-trash"></i></button></form>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <h5 class="fw-bold mb-3">Projects</h5>
+      <div class="row g-3">
+        {% for project in projects %}
+        <div class="col-md-6">
+          <div class="card-custom card-glow">
+            <div class="project-color" style="background: {{ project.color }}"></div>
+            <div class="p-3">
+              <div class="d-flex justify-content-between mb-2">
+                <h6 class="fw-bold mb-0"><a href="{{ url_for('projects.view', team_slug=team.slug, project_slug=project.slug) }}" class="text-white text-decoration-none">{{ project.name }}</a></h6>
+                <span class="badge bg-custom3 border border-custom">{{ project.task_stats().total }} tasks</span>
+              </div>
+              <p class="small text-dim mb-2">{{ project.description[:100] if project.description else 'No description' }}</p>
+              <div class="progress" style="height:4px;background:var(--bg3);">
+                {% set stats=project.task_stats() %}
+                {% if stats.total>0 %}
+                <div class="progress-bar bg-success" style="width: {{ (stats.done/stats.total*100)|int }}%"></div>
+                {% endif %}
+              </div>
+              <div class="d-flex justify-content-between mt-2"><small class="text-dim">{{ project.created_at|shortdate }}</small><small class="text-success">{{ stats.done }}/{{ stats.total }} done</small></div>
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <div class="col-12"><div class="card-custom p-4 text-center text-dim">No projects yet. Create one!</div></div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card-custom p-3 mb-3">
+        <h6 class="fw-bold mb-3"><i class="bi bi-person-plus"></i> Members</h6>
+        {% for member in members %}
+        <div class="d-flex align-items-center mb-2 p-2 rounded" style="background:var(--bg3);">
+          <div class="badge rounded-circle bg-primary me-2" style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;">{{ member.username[0].upper() }}</div>
+          <div><div class="small fw-bold">{{ member.display_name or member.username }}</div><div class="small text-dim" style="font-size:11px;">@{{ member.username }}</div></div>
+          {% if member.id==team.owner_id %}<span class="badge bg-warning text-dark ms-auto small">owner</span>{% endif %}
+        </div>
+        {% endfor %}
+        {% if is_owner %}
+        <form method="POST" action="{{ url_for('teams.invite', slug=team.slug) }}" class="mt-3">
+          <div class="input-group input-group-sm">
+            <input name="username" class="form-control" placeholder="username or email">
+            <button class="btn btn-primary-custom">Invite</button>
+          </div>
+        </form>
+        {% endif %}
+      </div>
+      <div class="card-custom p-3">
+        <h6 class="small fw-bold">Factory Stats</h6>
+        <div class="d-flex justify-content-between small mb-1"><span class="text-dim">Projects</span><span>{{ projects|length }}</span></div>
+        <div class="d-flex justify-content-between small mb-1"><span class="text-dim">Total Tasks</span><span>{{ total_tasks }}</span></div>
+        <div class="d-flex justify-content-between small"><span class="text-dim">Team Age</span><span>{{ team.created_at|shortdate }}</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Edit {{ project.name }}{% endblock %}
+{% block content %}
+<div class="container py-4" style="max-width:600px;">
+  <a href="{{ url_for('projects.view', team_slug=team.slug, project_slug=project.slug) }}" class="btn btn-ghost btn-sm mb-3"><i class="bi bi-arrow-left"></i> Back</a>
+  <div class="card-custom p-4">
+    <h4 class="fw-bold">Edit Project</h4>
+    <form method="POST" class="mt-3">
+      <div class="mb-3"><label class="form-label small">Name</label><input name="name" class="form-control" value="{{ project.name }}" required></div>
+      <div class="mb-3"><label class="form-label small">Description</label><textarea name="description" class="form-control" rows="3">{{ project.description }}</textarea></div>
+      <div class="mb-3"><label class="form-label small">Color</label><input name="color" type="color" class="form-control form-control-color" value="{{ project.color }}"></div>
+      <button class="btn btn-primary-custom w-100">Save Changes</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,2767 @@
+[
+  {
+    "id": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+    "name": "Skylar",
+    "description": "Approachable American female ideal for customer care and support.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Friendly Guide",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "central-tamil",
+        "locale": "ta-IN",
+        "is_native": false
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+    "name": "Daniel",
+    "description": "Clear, crisp male voice for digital assistants and system interactions",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Modern Assistant",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "modern-standard-arabic",
+        "locale": "ar-SA",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": false
+      },
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": false
+      },
+      {
+        "accent": "southern-karnataka",
+        "locale": "kn-IN",
+        "is_native": false
+      },
+      {
+        "accent": "korean",
+        "locale": "ko-KR",
+        "is_native": false
+      },
+      {
+        "accent": "konkani",
+        "locale": "mr-IN",
+        "is_native": false
+      },
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "central-tamil",
+        "locale": "ta-IN",
+        "is_native": false
+      },
+      {
+        "accent": "telangana",
+        "locale": "te-IN",
+        "is_native": false
+      },
+      {
+        "accent": "central-thai",
+        "locale": "th-TH",
+        "is_native": false
+      },
+      {
+        "accent": "manila",
+        "locale": "tl-PH",
+        "is_native": false
+      },
+      {
+        "accent": "urdu",
+        "locale": "ur-PK",
+        "is_native": false
+      },
+      {
+        "accent": "mandarin",
+        "locale": "zh-CN",
+        "is_native": false
+      },
+      {
+        "accent": "taiwanese-mandarin",
+        "locale": "zh-TW",
+        "is_native": false
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+    "name": "Gemma",
+    "description": "Confident, emotive British female for professional assistance",
+    "gender": "feminine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Decisive Agent",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": true
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "30894953-bcce-41fe-892c-15ce19c843ff",
+    "name": "Parker",
+    "description": "Casual, supportive warmth for friendly conversational flows and approachable check-ins.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Supportive Pal",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+    "name": "Archie",
+    "description": "Warm, conversational British male for casual and engaging dialogue.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Approachable Mate",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": true
+      },
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": false
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": false
+      },
+      {
+        "accent": "modern-standard-arabic",
+        "locale": "ar-SA",
+        "is_native": false
+      },
+      {
+        "accent": "bulgarian",
+        "locale": "bg-BG",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": false
+      },
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": false
+      },
+      {
+        "accent": "southern-karnataka",
+        "locale": "kn-IN",
+        "is_native": false
+      },
+      {
+        "accent": "korean",
+        "locale": "ko-KR",
+        "is_native": false
+      },
+      {
+        "accent": "konkani",
+        "locale": "mr-IN",
+        "is_native": false
+      },
+      {
+        "accent": "oslo",
+        "locale": "no-NO",
+        "is_native": false
+      },
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "central-tamil",
+        "locale": "ta-IN",
+        "is_native": false
+      },
+      {
+        "accent": "telangana",
+        "locale": "te-IN",
+        "is_native": false
+      },
+      {
+        "accent": "central-thai",
+        "locale": "th-TH",
+        "is_native": false
+      },
+      {
+        "accent": "manila",
+        "locale": "tl-PH",
+        "is_native": false
+      },
+      {
+        "accent": "urdu",
+        "locale": "ur-PK",
+        "is_native": false
+      },
+      {
+        "accent": "mandarin",
+        "locale": "zh-CN",
+        "is_native": false
+      },
+      {
+        "accent": "taiwanese-mandarin",
+        "locale": "zh-TW",
+        "is_native": false
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "f4d6bb07-f876-4464-ba70-cd48d8701890",
+    "name": "Adriana",
+    "description": "Bright, expressive voice for promotional and entertainment use",
+    "gender": "feminine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Bright Entertainer",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "498e7f37-7fa3-4e2c-b8e2-8b6e9276f956",
+    "name": "Aiko",
+    "description": "Calm and composed voice for clear, conversational interactions",
+    "gender": "feminine",
+    "language": "ja",
+    "country": "JP",
+    "tagline": "Calming Voice",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "cc71692b-f326-499b-8f8f-90a415b4d3fb",
+    "name": "Akash",
+    "description": "A composed and articulate tone ideal for delivering organized content, such as educational modules or detailed business briefings.",
+    "gender": "masculine",
+    "language": "or",
+    "country": "IN",
+    "tagline": "Structured Presenter",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "c8403b5c-6465-4396-9065-a440d376528a",
+    "name": "Alessio",
+    "description": "This voice offers a calm, precise delivery, ideal for navigating complex inquiries and providing clear, reassuring solutions.",
+    "gender": "masculine",
+    "language": "it",
+    "country": "IT",
+    "tagline": "Clear Anchor",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "0528c162-5439-4dde-a4b8-a3a9cb62edf5",
+    "name": "Alia",
+    "description": "A poised and articulate voice, providing seamless assistance and refined instruction for digital interactions.",
+    "gender": "feminine",
+    "language": "ar",
+    "country": "SA",
+    "tagline": "Poised Host",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "khaleeji",
+        "locale": "ar-SA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "9904416a-0831-44ea-b8ee-5f145e8f9bbf",
+    "name": "Alice",
+    "description": "Delivers information with measured clarity and a helpful tone, well-suited for service-oriented applications.",
+    "gender": "feminine",
+    "language": "pt",
+    "country": "BR",
+    "tagline": "Informative Speaker",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "37eb1575-353e-44f4-855d-894b4f003642",
+    "name": "Alok",
+    "description": "Delivers information with precise clarity and a reassuring presence, ideal for guiding listeners through complex details.",
+    "gender": "masculine",
+    "language": "or",
+    "country": "IN",
+    "tagline": "Clear Navigator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "12e85709-099c-480a-ba3e-875c41a9611a",
+    "name": "Arlo",
+    "description": "Arlo's friendly, mid-toned Australian voice is excellent for customer support, offering clear and helpful assistance with ease.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "AU",
+    "tagline": "Service Specialist",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "australian",
+        "locale": "en-AU",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "41e97793-a58d-40b7-8430-83465e186f94",
+    "name": "Aryan",
+    "description": "This voice offers a calm and meticulous approach, perfect for ensuring accuracy and guiding through detailed processes.",
+    "gender": "masculine",
+    "language": "ur",
+    "country": "IN",
+    "tagline": "Order Verifier",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "indian-urdu",
+        "locale": "ur-IN",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "1fcd23d0-bf12-4896-8f60-4f21ef5c9b98",
+    "name": "Austin",
+    "description": "Reliable and approachable guide for dependable everyday assistance.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Conversational Guide",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "ebc02c0d-61fd-48f2-a6c9-0d6683b7d466",
+    "name": "Ayala",
+    "description": "Ayala's expressive yet controlled delivery makes her perfect for engaging narrations and insightful presentations.",
+    "gender": "feminine",
+    "language": "he",
+    "country": "IL",
+    "tagline": "Expert Narrator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "5def377d-908b-4540-8bd7-3c968fcae351",
+    "name": "Beno\u00eet",
+    "description": "Clear, methodical French male for professional customer assistance.",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Methodical Moderator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "5241b0aa-3c09-479d-b0b8-a6ec68daef5e",
+    "name": "Brielle",
+    "description": "Brielle delivers engaging renewal partner narration with professional pacing and a friendly presence.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Renewal Partner",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "391f4c0a-f1a8-4c21-9aa2-7a07f0a4b0dc",
+    "name": "Bronte",
+    "description": "Bright and trustworthy Australian voice provides approachable guidance, making her excellent for customer support and helpful directions.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "AU",
+    "tagline": "Trusted Guide",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "australian",
+        "locale": "en-AU",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "86e30c1d-714b-4074-a1f2-1cb6b552fb49",
+    "name": "Carson",
+    "description": "Friendly young adult male for customer support conversations",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Curious Conversationalist",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": false
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "modern-standard-arabic",
+        "locale": "ar-SA",
+        "is_native": false
+      },
+      {
+        "accent": "bulgarian",
+        "locale": "bg-BG",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": false
+      },
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": false
+      },
+      {
+        "accent": "southern-karnataka",
+        "locale": "kn-IN",
+        "is_native": false
+      },
+      {
+        "accent": "korean",
+        "locale": "ko-KR",
+        "is_native": false
+      },
+      {
+        "accent": "north-kerala",
+        "locale": "ml-IN",
+        "is_native": false
+      },
+      {
+        "accent": "konkani",
+        "locale": "mr-IN",
+        "is_native": false
+      },
+      {
+        "accent": "oslo",
+        "locale": "no-NO",
+        "is_native": false
+      },
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "central-tamil",
+        "locale": "ta-IN",
+        "is_native": false
+      },
+      {
+        "accent": "telangana",
+        "locale": "te-IN",
+        "is_native": false
+      },
+      {
+        "accent": "central-thai",
+        "locale": "th-TH",
+        "is_native": false
+      },
+      {
+        "accent": "urdu",
+        "locale": "ur-PK",
+        "is_native": false
+      },
+      {
+        "accent": "mandarin",
+        "locale": "zh-CN",
+        "is_native": false
+      },
+      {
+        "accent": "taiwanese-mandarin",
+        "locale": "zh-TW",
+        "is_native": false
+      }
+    ]
+  },
+  {
+    "id": "e8e5fffb-252c-436d-b842-8879b84445b6",
+    "name": "Cathy",
+    "description": "Nice, young adult female for casual conversations",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Coworker",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": false
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "modern-standard-arabic",
+        "locale": "ar-SA",
+        "is_native": false
+      },
+      {
+        "accent": "bulgarian",
+        "locale": "bg-BG",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "southern-karnataka",
+        "locale": "kn-IN",
+        "is_native": false
+      },
+      {
+        "accent": "korean",
+        "locale": "ko-KR",
+        "is_native": false
+      },
+      {
+        "accent": "north-kerala",
+        "locale": "ml-IN",
+        "is_native": false
+      },
+      {
+        "accent": "konkani",
+        "locale": "mr-IN",
+        "is_native": false
+      },
+      {
+        "accent": "oslo",
+        "locale": "no-NO",
+        "is_native": false
+      },
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "central-tamil",
+        "locale": "ta-IN",
+        "is_native": false
+      },
+      {
+        "accent": "telangana",
+        "locale": "te-IN",
+        "is_native": false
+      },
+      {
+        "accent": "central-thai",
+        "locale": "th-TH",
+        "is_native": false
+      },
+      {
+        "accent": "manila",
+        "locale": "tl-PH",
+        "is_native": false
+      },
+      {
+        "accent": "urdu",
+        "locale": "ur-PK",
+        "is_native": false
+      },
+      {
+        "accent": "mandarin",
+        "locale": "zh-CN",
+        "is_native": false
+      }
+    ]
+  },
+  {
+    "id": "ad38904c-0ce9-42b1-9159-5ad5352ef089",
+    "name": "Celia",
+    "description": "With a thoughtful and analytical tone, this voice simplifies issues and provides actionable insights.",
+    "gender": "feminine",
+    "language": "es",
+    "country": "ES",
+    "tagline": "Practical Analyst",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "4b5112be-c461-44a2-a66b-0dd7f98db4a0",
+    "name": "Cesar",
+    "description": "With steady clarity and warmth, Cesar fits service specialist use cases that need confident delivery.",
+    "gender": "masculine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Friendly Server",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "57a3a9e0-a91c-4c94-a2bb-e6cbab3ae649",
+    "name": "Clemens",
+    "description": "This voice offers clear, articulate guidance, perfect for detailed instructions and educational content.",
+    "gender": "masculine",
+    "language": "de",
+    "country": "DE",
+    "tagline": "Precise Instructor",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "b24f41fd-00a3-4cd8-992a-a0c9f13f3ef1",
+    "name": "Clive",
+    "description": "Offers a composed and articulate voice, perfect for delivering educational content or detailed advice.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Measured Expert",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "c46cf1f6-49a1-4d67-9a57-ff859a4046d3",
+    "name": "Cora",
+    "description": "Cora offers a helpful and articulate tone, perfectly suited for customer support and service-oriented communication.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Service Specialist",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "630ed21c-2c5c-41cf-9d82-10a7fd668370",
+    "name": "Corey",
+    "description": "Inviting, cheerful young adult male for casual conversation.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Supportive Buddy",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "35b2cfc1-e6fb-4d69-a598-c1780612be4a",
+    "name": "Dar\u00edo",
+    "description": "Delivering with steady confidence and a composed tone, this voice excels in professional advising and clear explanations.",
+    "gender": "masculine",
+    "language": "es",
+    "country": "ES",
+    "tagline": "Steady Operator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "00e9ec78-2002-41dd-8d19-6b1d3b17a461",
+    "name": "Elena",
+    "description": "Offers a composed and articulate presence, ideal for fostering understanding and managing client relationships.",
+    "gender": "feminine",
+    "language": "it",
+    "country": "IT",
+    "tagline": "Client Liaison",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "2a12b36c-7f9b-4c3a-9f7a-72731b15323a",
+    "name": "Ella",
+    "description": "Approachable presence for bright, lightweight and everyday customer conversations.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "AU",
+    "tagline": "Caring Scout",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "australian",
+        "locale": "en-AU",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "cb2694c3-715f-4da9-99f3-1c974fff2928",
+    "name": "Elo\u00e1",
+    "description": "A warm and articulate voice, ideal for breaking down complex topics into easily understandable segments.",
+    "gender": "feminine",
+    "language": "pt",
+    "country": "BR",
+    "tagline": "Engaging Explainer",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "b0689631-eee7-4a6c-bb86-195f1d267c2e",
+    "name": "Emilio",
+    "description": "Upbeat voice with a friendly tone for positive customer service interactions",
+    "gender": "masculine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Friendly Optimist",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "81452d3b-a5f6-4ef4-afff-542182fac725",
+    "name": "Fabiana",
+    "description": "Provides precise and efficient support, ideal for navigating services and tech solutions as a clear desk.",
+    "gender": "feminine",
+    "language": "pt",
+    "country": "BR",
+    "tagline": "Clear Desk",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "9d216805-e52e-4b1e-966a-6447df592a5d",
+    "name": "Fabien",
+    "description": "A natural tracking desk style rather than a scripted announcer \u2014 clear, warm, and efficient.",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Tracking Desk",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "526ab945-9cbf-4bd2-9c72-3833d55d4c68",
+    "name": "Fabio",
+    "description": "This voice offers a composed and articulate delivery, ideal for clear explanations and detailed instructions.",
+    "gender": "masculine",
+    "language": "it",
+    "country": "IT",
+    "tagline": "Logistics Expert",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "616c64d7-f541-436b-9b8d-e79cfbe19ef9",
+    "name": "Felipe",
+    "description": "A supportive voice, perfect for guiding users through processes with clarity and ease.",
+    "gender": "masculine",
+    "language": "pt",
+    "country": "BR",
+    "tagline": "Warm Assistant",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "b4b8e2af-6139-466e-a93a-30c20d2e1fc5",
+    "name": "Fernanda",
+    "description": "Approachable, Mexican female ideal for customer care and support.",
+    "gender": "feminine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Friendly Guide",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "79d2cf27-444a-4c3a-9eed-2ad5cf795a3b",
+    "name": "Fraser",
+    "description": "Fraser brings a bright and articulate Australian voice, ensuring messages are delivered with precision and natural confidence.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "AU",
+    "tagline": "Trusted Communicator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "australian",
+        "locale": "en-AU",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "bcdcad6d-4eb6-4a71-89fd-1ae2ce9f95d8",
+    "name": "Freja",
+    "description": "A bright and articulate voice, ideal for presenting information with clarity and warmth.",
+    "gender": "feminine",
+    "language": "sv",
+    "country": "SE",
+    "tagline": "Informative Host",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "stockholm",
+        "locale": "sv-SE",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "f5e6c270-2aa9-463f-b48b-579a39284ce2",
+    "name": "F\u00e9lix",
+    "description": "An approachable and steady tone makes this voice ideal for customer service and delivering practical, reassuring guidance.",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Helpful Professional",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "3a01612e-07da-4a85-bba8-ce10481df477",
+    "name": "Gareth",
+    "description": "Provides a naturally warm and approachable tone, fostering engagement in interactive dialogues and customer care.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "CA",
+    "tagline": "Conversational Specialist",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "canadian-english",
+        "locale": "en-CA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "3c1c7da2-8f3f-4966-a76d-1f5e484865b5",
+    "name": "Gonzalo",
+    "description": "Crisp and personable, this hospitable cadence is tailor-made for automated phone menus, dispatch notifications, and day-to-day service desk tasks.",
+    "gender": "masculine",
+    "language": "es",
+    "country": "PA",
+    "tagline": "Responsive Attendant",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "panamanian",
+        "locale": "es-PA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "6c756032-11c3-4be8-a120-74f9673fb700",
+    "name": "Harlow",
+    "description": "Offers a friendly yet professional presence, perfect for efficient problem-solving and customer support conversations.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "CA",
+    "tagline": "Warm Support",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "canadian-english",
+        "locale": "en-CA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "8a6d0b8e-8cd8-4952-a41e-b7af18662135",
+    "name": "Helena",
+    "description": "An articulate and even-toned presence, enhancing professional communications and informational content with ease.",
+    "gender": "feminine",
+    "language": "pt",
+    "country": "BR",
+    "tagline": "Solution Facilitator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "d9f4af15-c402-4f50-bbda-d8823d028d6a",
+    "name": "Henri",
+    "description": "A natural express host style rather than a scripted announcer \u2014 clear, warm, and efficient.",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Express Host",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "87286a8d-7ea7-4235-a41a-dd9fa6630feb",
+    "name": "Henry",
+    "description": "A relaxed, youthful male voice with a monotone, matter-of-fact attitude - ideal for casual, straightforward conversations.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Plainspoken Guy",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": false
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "modern-standard-arabic",
+        "locale": "ar-SA",
+        "is_native": false
+      },
+      {
+        "accent": "bulgarian",
+        "locale": "bg-BG",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": false
+      },
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": false
+      },
+      {
+        "accent": "southern-karnataka",
+        "locale": "kn-IN",
+        "is_native": false
+      },
+      {
+        "accent": "korean",
+        "locale": "ko-KR",
+        "is_native": false
+      },
+      {
+        "accent": "konkani",
+        "locale": "mr-IN",
+        "is_native": false
+      },
+      {
+        "accent": "oslo",
+        "locale": "no-NO",
+        "is_native": false
+      },
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "central-tamil",
+        "locale": "ta-IN",
+        "is_native": false
+      },
+      {
+        "accent": "telangana",
+        "locale": "te-IN",
+        "is_native": false
+      },
+      {
+        "accent": "central-thai",
+        "locale": "th-TH",
+        "is_native": false
+      },
+      {
+        "accent": "urdu",
+        "locale": "ur-PK",
+        "is_native": false
+      },
+      {
+        "accent": "mandarin",
+        "locale": "zh-CN",
+        "is_native": false
+      },
+      {
+        "accent": "taiwanese-mandarin",
+        "locale": "zh-TW",
+        "is_native": false
+      }
+    ]
+  },
+  {
+    "id": "7c58f4a4-a72c-42fa-a503-41b9408820f3",
+    "name": "In\u00e8s",
+    "description": "Confident, articulate French female suited for corporate narration.",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Poised Communicator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "a7beff01-8f8b-4809-bfe6-e2166e57e0c2",
+    "name": "Iria",
+    "description": "Her measured and thoughtful delivery creates an engaging experience, perfect for detailed explanations and educational content.",
+    "gender": "feminine",
+    "language": "es",
+    "country": "ES",
+    "tagline": "Thoughtful Communicator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc",
+    "name": "Jacqueline",
+    "description": "Confident, young adult female for empathic customer support",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Reassuring Agent",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "new-zealand",
+        "locale": "en-NZ",
+        "is_native": false
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "modern-standard-arabic",
+        "locale": "ar-SA",
+        "is_native": false
+      },
+      {
+        "accent": "bulgarian",
+        "locale": "bg-BG",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": false
+      },
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "southern-karnataka",
+        "locale": "kn-IN",
+        "is_native": false
+      },
+      {
+        "accent": "korean",
+        "locale": "ko-KR",
+        "is_native": false
+      },
+      {
+        "accent": "north-kerala",
+        "locale": "ml-IN",
+        "is_native": false
+      },
+      {
+        "accent": "konkani",
+        "locale": "mr-IN",
+        "is_native": false
+      },
+      {
+        "accent": "oslo",
+        "locale": "no-NO",
+        "is_native": false
+      },
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "central-tamil",
+        "locale": "ta-IN",
+        "is_native": false
+      },
+      {
+        "accent": "telangana",
+        "locale": "te-IN",
+        "is_native": false
+      },
+      {
+        "accent": "central-thai",
+        "locale": "th-TH",
+        "is_native": false
+      },
+      {
+        "accent": "manila",
+        "locale": "tl-PH",
+        "is_native": false
+      },
+      {
+        "accent": "urdu",
+        "locale": "ur-PK",
+        "is_native": false
+      },
+      {
+        "accent": "mandarin",
+        "locale": "zh-CN",
+        "is_native": false
+      },
+      {
+        "accent": "taiwanese-mandarin",
+        "locale": "zh-TW",
+        "is_native": false
+      }
+    ]
+  },
+  {
+    "id": "92579402-6868-412e-b845-3efed0be7a9e",
+    "name": "Jade",
+    "description": "A serene and composed voice that delivers information with steady precision, creating a reassuring and trustworthy listening experience.",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Steady Companion",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "a5136bf9-224c-4d76-b823-52bd5efcffcc",
+    "name": "Jameson",
+    "description": "Friendly, laid-back male voice for customer support and onboarding",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Easygoing Support",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "modern-standard-arabic",
+        "locale": "ar-SA",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": false
+      },
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": false
+      },
+      {
+        "accent": "southern-karnataka",
+        "locale": "kn-IN",
+        "is_native": false
+      },
+      {
+        "accent": "korean",
+        "locale": "ko-KR",
+        "is_native": false
+      },
+      {
+        "accent": "konkani",
+        "locale": "mr-IN",
+        "is_native": false
+      },
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "central-tamil",
+        "locale": "ta-IN",
+        "is_native": false
+      },
+      {
+        "accent": "telangana",
+        "locale": "te-IN",
+        "is_native": false
+      },
+      {
+        "accent": "central-thai",
+        "locale": "th-TH",
+        "is_native": false
+      },
+      {
+        "accent": "manila",
+        "locale": "tl-PH",
+        "is_native": false
+      },
+      {
+        "accent": "urdu",
+        "locale": "ur-PK",
+        "is_native": false
+      },
+      {
+        "accent": "mandarin",
+        "locale": "zh-CN",
+        "is_native": false
+      }
+    ]
+  },
+  {
+    "id": "25d7abcb-4d6d-4aca-adce-8a1c85620c8b",
+    "name": "Jessica",
+    "description": "Crisp and articulate delivery designed for seamless information sharing.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Clear Communicator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      }
+    ]
+  },
+  {
+    "id": "d1d9c946-7cfc-4378-85a4-07d09827cb7e",
+    "name": "Jolene",
+    "description": "Rich, honeyed Southern female perfect for narration.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Warm Storyteller",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "southern-us",
+        "locale": "en-US",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "3b7d569e-01fc-45ef-b74b-29460956c691",
+    "name": "Josette",
+    "description": "Josette's inviting and clear voice offers a friendly presence, perfect for guiding listeners with the feel of a frontline helper.",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Frontline Helper",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": true
+      },
+      {
+        "accent": "canadian-english",
+        "locale": "en-CA",
+        "is_native": false
+      }
+    ]
+  },
+  {
+    "id": "8f1e9d27-96ff-405e-9213-7432a784ac0b",
+    "name": "Jules",
+    "description": "Delivers information with a polished, confident tone, suitable for high-level corporate communications and expert insights.",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Polished Host",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "273f9ef7-9fc2-4def-88bb-ab108c6249ca",
+    "name": "Julia",
+    "description": "Soft, graceful tone with a composed rhythm for polished guidance and reassurance.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Gentle Guide",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "cb9c954d-bcaa-43ed-82bf-aeb5e88a3cb5",
+    "name": "Kabir",
+    "description": "Offering a composed and structured delivery, this voice seamlessly connects information, perfect for detailed service updates and coordination.",
+    "gender": "masculine",
+    "language": "hi",
+    "country": "IN",
+    "tagline": "Service Integrator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "f786b574-daa5-4673-aa0c-cbe3e8534c02",
+    "name": "Katie",
+    "description": "Enunciating young adult female for conversational support use cases",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Friendly Fixer",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "israeli",
+        "locale": "he-IL",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "central-tamil",
+        "locale": "ta-IN",
+        "is_native": false
+      },
+      {
+        "accent": "telangana",
+        "locale": "te-IN",
+        "is_native": false
+      },
+      {
+        "accent": "mandarin",
+        "locale": "zh-CN",
+        "is_native": false
+      }
+    ]
+  },
+  {
+    "id": "1cc00672-e9d4-455e-b3fb-31dfb7aad231",
+    "name": "Laura",
+    "description": "Laura provides a steady and reliable presence, making complex information accessible with her calm, authoritative, and friendly delivery.",
+    "gender": "feminine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Trustworthy Guide",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "a33f7a4c-100f-41cf-a1fd-5822e8fc253f",
+    "name": "Lauren",
+    "description": "Expressive female voice for narration, storytelling, and creative content",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Lively Narrator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "australian",
+        "locale": "en-AU",
+        "is_native": false
+      },
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      }
+    ]
+  },
+  {
+    "id": "64a941ac-07ac-462c-a81c-008e353dd83e",
+    "name": "Layan",
+    "description": "A composed and precise delivery for conveying complex details and offering clear, actionable insights.",
+    "gender": "feminine",
+    "language": "ar",
+    "country": "SA",
+    "tagline": "Clarity Provider",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "khaleeji",
+        "locale": "ar-SA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "8d673f7e-4a22-47fd-973a-ead9a85b7187",
+    "name": "Lindiwe",
+    "description": "Offers a composed and thoughtful approach, guiding listeners through complex information with ease and assurance.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "ZA",
+    "tagline": "Capable Professional",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "south-african",
+        "locale": "en-ZA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "045b0ec6-3bed-4bc8-b797-b90a7bb5b445",
+    "name": "Lise",
+    "description": "Delivering information with a polished, inviting tone, this voice is ideal for seamless client engagement and premium service.",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Service Concierge",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "0e8d318d-7b5a-49d1-9952-dc265248c12a",
+    "name": "Livia",
+    "description": "This voice combines clarity with a helpful demeanor, advocating for listeners and guiding them through service inquiries.",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Customer Advocate",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "f4d8ad0e-ad3a-4c37-b99d-ff28e366781b",
+    "name": "Ludvig",
+    "description": "Provides insightful explanations with a reassuring and helpful demeanor.",
+    "gender": "masculine",
+    "language": "sv",
+    "country": "SE",
+    "tagline": "Insightful Guide",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "stockholm",
+        "locale": "sv-SE",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "63fdecc2-4e1d-4aa3-a442-27204e3cd3b5",
+    "name": "L\u00e9onie",
+    "description": "An inviting and expressive voice that creates a pleasant atmosphere, ideal for interactive experiences and guiding listeners through processes.",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Bright Host",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "8c44acc3-f107-460b-8958-a57ec638eaf5",
+    "name": "L\u00edvia",
+    "description": "Navigates inquiries with a helpful and composed delivery, ensuring a smooth and understanding interaction.",
+    "gender": "feminine",
+    "language": "pt",
+    "country": "BR",
+    "tagline": "Checkout Guide",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "2fc4f1ec-bfd0-46f1-8e6d-d4279eaaf838",
+    "name": "Mateo",
+    "description": "Warm, genuine Mexican male perfect for conversational platforms.",
+    "gender": "masculine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Friendly Host",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "996ec149-0dca-4389-ad08-e2d6f906b4bf",
+    "name": "Mathis",
+    "description": "Presents data and insights with a thoughtful, measured delivery, simplifying detailed analyses for listeners.",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Analytical Explanator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "80f117a5-5196-4b64-8b4c-efda3d3ab176",
+    "name": "Ma\u00eblle B",
+    "description": "This voice offers a measured and empathetic delivery, perfect for thoughtful guidance and detailed explanations.",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Care Desk",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "d7bf7d75-64b7-4c1e-86c0-79d647366587",
+    "name": "Michelle",
+    "description": "Gentle and reassuring tone designed to offer comfort and build trust.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Empathetic Voice",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "7348f896-8516-4382-9c8f-ad2aee1ffedc",
+    "name": "Naledi",
+    "description": "Naledi offers an engaging and informative tone, ideal for e-learning and clear, comprehensive educational narration.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "ZA",
+    "tagline": "Engaging Instructor",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "south-african",
+        "locale": "en-ZA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "33d406dd-ff6f-4be7-a7f5-8b1ba183b3e4",
+    "name": "Nandi",
+    "description": "A poised and eloquent delivery, ideal for corporate presentations, documentary narration, and sophisticated informational content.",
+    "gender": "feminine",
+    "language": "en",
+    "country": "ZA",
+    "tagline": "Poised Concierge",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "south-african",
+        "locale": "en-ZA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "aa3ccc4a-cfd8-405c-acf5-1873a527b006",
+    "name": "Naoki",
+    "description": "Delivers messages with a polished, articulate tone, perfect for corporate presentations and formal interactions.",
+    "gender": "masculine",
+    "language": "ja",
+    "country": "JP",
+    "tagline": "Polished Professional",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "d051b675-6863-44cc-b7ba-356858ed7df8",
+    "name": "Nisa",
+    "description": "Delivers information with a composed and knowledgeable tone, perfect for explaining complex processes or technical steps.",
+    "gender": "feminine",
+    "language": "th",
+    "country": "TH",
+    "tagline": "System Navigator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "central-thai",
+        "locale": "th-TH",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "5568a7df-e5ab-4442-9fae-2e9ba1b15ad8",
+    "name": "Quentin",
+    "description": "Polished narrator with a measured pace, perfect for corporate and professional settings",
+    "gender": "masculine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Refined Narrator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "f9f9f472-6247-4403-9abe-616f7c407c63",
+    "name": "Raed",
+    "description": "Delivers precise and analytical insights, simplifying complex workflows for clear understanding.",
+    "gender": "masculine",
+    "language": "ar",
+    "country": "SA",
+    "tagline": "Workflow Analyst",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "khaleeji",
+        "locale": "ar-SA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "cbb6fdf0-30dd-49f6-af7d-bbb1185c1fa5",
+    "name": "Rafael",
+    "description": "A composed and reliable presence, ideal for important updates or detailed instructions with a calm, authoritative tone.",
+    "gender": "masculine",
+    "language": "es",
+    "country": "ES",
+    "tagline": "Poised Advisor",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "9b67072c-d46c-465d-87dc-f7a1c6db2bf3",
+    "name": "Ramon",
+    "description": "With a measured pace and clear articulation, Ramon brings a professional calm coordinator voice to corporate and service contexts.",
+    "gender": "masculine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Calm Coordinator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "92f27ee5-d8b9-4c0a-a0c2-f401f6ab0a72",
+    "name": "Reem",
+    "description": "Delivers information with assured clarity and a helpful demeanor, perfect for guiding users efficiently.",
+    "gender": "feminine",
+    "language": "ar",
+    "country": "SA",
+    "tagline": "Solution Provider",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "khaleeji",
+        "locale": "ar-SA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "5ee9feff-1265-424a-9d7f-8e4d431a12c7",
+    "name": "Ronald",
+    "description": "Intense, deep young adult male for casual conversations",
+    "gender": "masculine",
+    "language": "en",
+    "country": "US",
+    "tagline": "Thinker",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "general-american",
+        "locale": "en-US",
+        "is_native": true
+      },
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": false
+      },
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": false
+      },
+      {
+        "accent": "standard-german",
+        "locale": "de-DE",
+        "is_native": false
+      },
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": false
+      },
+      {
+        "accent": "standard-italian",
+        "locale": "it-IT",
+        "is_native": false
+      },
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": false
+      },
+      {
+        "accent": "brazilian-portuguese",
+        "locale": "pt-BR",
+        "is_native": false
+      },
+      {
+        "accent": "mandarin",
+        "locale": "zh-CN",
+        "is_native": false
+      }
+    ]
+  },
+  {
+    "id": "8c254787-4eb4-4577-bd3d-fb3c273baea2",
+    "name": "Rowan",
+    "description": "Provides a reliable and steady vocal presence, ensuring clarity and trust in every piece of communication.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "GB",
+    "tagline": "Steady Guide",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "british",
+        "locale": "en-GB",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "579dc63a-1c19-4512-866a-1295dff18f0f",
+    "name": "Sakura",
+    "description": "This voice offers precise and reassuring information with a composed, articulate delivery, ideal for customer interactions.",
+    "gender": "feminine",
+    "language": "ja",
+    "country": "JP",
+    "tagline": "Precise Host",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "382109c0-5c85-4fd1-9d94-b3ec07a4486b",
+    "name": "Samuel",
+    "description": "This voice provides clear and precise explanations with a composed and reassuring delivery, ideal for detailed guidance.",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Informative Facilitator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "e6b71342-48f1-4c70-a13a-d197b176ff24",
+    "name": "Sana",
+    "description": "With a precise yet friendly delivery, this voice clarifies options and resolves queries effectively.",
+    "gender": "feminine",
+    "language": "hi",
+    "country": "IN",
+    "tagline": "Friendly Concierge",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "998c6d1b-0bd0-4d27-bce7-ed030e3c9e6c",
+    "name": "Sarthak",
+    "description": "Provides a confident and consistent vocal presence, ensuring clarity and build trust in any communication.",
+    "gender": "masculine",
+    "language": "or",
+    "country": "IN",
+    "tagline": "Trustworthy Communicator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "4459a9a5-69d6-4680-b970-e13dc51845b6",
+    "name": "Siya",
+    "description": "Breathes life into words with a gentle, expressive quality, perfect for engaging listeners with heartfelt narratives and clear communication.",
+    "gender": "feminine",
+    "language": "hi",
+    "country": "IN",
+    "tagline": "Bright Conversationalist",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "standard-hindi",
+        "locale": "hi-IN",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "0046dfd7-171b-4442-9eb7-0712fa712a7a",
+    "name": "Smruti",
+    "description": "Her precise and articulate tone ensures accuracy, making this voice excellent for delivering complex information and detailed explanations.",
+    "gender": "feminine",
+    "language": "or",
+    "country": "IN",
+    "tagline": "Precise Anchor",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "odia",
+        "locale": "or-IN",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "4663e61a-a9c2-40e1-94c5-c461ed9d3d31",
+    "name": "Sof\u00eda",
+    "description": "This clear and composed voice guides listeners through processes, offering precise information with a friendly, digital presence.",
+    "gender": "feminine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Digital Concierge",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "c9f95851-235c-458c-acfb-67cdb2558538",
+    "name": "Sol\u00e8ne",
+    "description": "This voice embodies a helpful and confident demeanor, perfect for guiding users through processes and resolving inquiries with clarity especially suited for customer champion use cases.",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Customer Champion",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "4ff0f045-c140-4aa3-9210-529083f86fca",
+    "name": "Supannee",
+    "description": "Offers a composed and considerate presence, ideal for providing attentive support and detailed responses.",
+    "gender": "feminine",
+    "language": "th",
+    "country": "TH",
+    "tagline": "Support Concierge",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "central-thai",
+        "locale": "th-TH",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "21c2f7ab-dacb-4847-a593-3cd20668c4b3",
+    "name": "Thiago",
+    "description": "With a composed and clear presence, this speaker excels in delivering information accurately and engagingly for any corporate setting.",
+    "gender": "masculine",
+    "language": "es",
+    "country": "ES",
+    "tagline": "Measured Professional",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "castilian",
+        "locale": "es-ES",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "3597a26f-80ef-4bd5-8101-9699bc764917",
+    "name": "Ximena",
+    "description": "Steady, clear Latina female ideal for guided experiences.",
+    "gender": "feminine",
+    "language": "es",
+    "country": "MX",
+    "tagline": "Calm Navigator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "mexican",
+        "locale": "es-MX",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "fbc431c6-7d79-4ef5-b1bb-aab9f579c690",
+    "name": "Younes",
+    "description": "A consistently clear and reassuring tone makes this voice ideal for dependable guidance and seamless professional communication.",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Clear Helper",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "0f5ac064-30c7-4cf6-8748-d275f682a0d5",
+    "name": "Yu-Hsin",
+    "description": "This voice offers a calm and precise delivery, ideal for customer support and detailed informational services.",
+    "gender": "feminine",
+    "language": "zh",
+    "country": "TW",
+    "tagline": "Service Facilitator",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "taiwanese-mandarin",
+        "locale": "zh-TW",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "7ca2afba-a719-4f06-9af2-ea2b8e3cf14c",
+    "name": "Yuto",
+    "description": "A reliable and organized voice, skillfully conveying important updates and facilitating smooth logistical processes.",
+    "gender": "masculine",
+    "language": "ja",
+    "country": "JP",
+    "tagline": "Logistical Assistant",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "cb21b4af-0e46-44f7-9128-51be7f898311",
+    "name": "Yuzuki",
+    "description": "Offers meticulous explanations with a steady and reassuring tone, ideal for clarifying complex information.",
+    "gender": "feminine",
+    "language": "ja",
+    "country": "JP",
+    "tagline": "Composed Explainer",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "standard-japanese",
+        "locale": "ja-JP",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "aa2cafe9-97ba-4052-ac3c-875000f95212",
+    "name": "Zander",
+    "description": "Zander delivers a measured and calm presence, ideal for professional guidance and reassuring explanations.",
+    "gender": "masculine",
+    "language": "en",
+    "country": "ZA",
+    "tagline": "Composed Advisor",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "south-african",
+        "locale": "en-ZA",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "b56a7171-86f0-42b6-b3fa-a316794aa4e0",
+    "name": "Zo\u00e9",
+    "description": "She expertly conveys instructions and updates with clear articulation, ensuring timely and effective communication.",
+    "gender": "feminine",
+    "language": "fr",
+    "country": "FR",
+    "tagline": "Informative Dispatcher",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "parisian",
+        "locale": "fr-FR",
+        "is_native": true
+      }
+    ]
+  },
+  {
+    "id": "c6ccfe32-6bee-484a-a8a2-7a51bee93f99",
+    "name": "\u00c9tienne",
+    "description": "This voice offers a precise and reassuring presence, ideal for customer support and detailed instructions.",
+    "gender": "masculine",
+    "language": "fr",
+    "country": "CA",
+    "tagline": "Precise Specialist",
+    "is_owner": false,
+    "accents": [
+      {
+        "accent": "canadian-french",
+        "locale": "fr-CA",
+        "is_native": true
+      }
+    ]
+  }
+]

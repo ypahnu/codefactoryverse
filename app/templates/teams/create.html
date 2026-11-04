@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Create Team{% endblock %}
+{% block content %}
+<div class="container py-4" style="max-width:600px;">
+  <a href="{{ url_for('teams.index') }}" class="btn btn-ghost btn-sm mb-3"><i class="bi bi-arrow-left"></i> Back</a>
+  <div class="card-custom p-4">
+    <h4 class="fw-bold mb-1">Create new team</h4>
+    <p class="text-dim small mb-4">Teams organize your projects and members</p>
+    <form method="POST">
+      <div class="mb-3">
+        <label class="form-label small">Team Name</label>
+        <input name="name" class="form-control" placeholder="Acme Corp" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label small">Description</label>
+        <textarea name="description" class="form-control" rows="3" placeholder="What does this team build?"></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label small">Color</label>
+        <div class="d-flex gap-2">
+          {% for color in ['#6366f1','#8b5cf6','#ec4899','#10b981','#f59e0b','#ef4444','#06b6d4'] %}
+          <label><input type="radio" name="color" value="{{ color }}" class="d-none" {% if loop.first %}checked{% endif %}><div style="width:32px;height:32px;background:{{ color }};border-radius:8px;cursor:pointer;border:2px solid transparent;" class="color-option"></div></label>
+          {% endfor %}
+        </div>
+      </div>
+      <button class="btn btn-primary-custom w-100">Create Team</button>
+    </form>
+  </div>
+</div>
+<script>
+document.querySelectorAll('.color-option').forEach(el=>{el.addEventListener('click',function(){document.querySelectorAll('.color-option').forEach(c=>c.style.borderColor='transparent'); this.style.borderColor='white';});});
+</script>
+{% endblock %}
