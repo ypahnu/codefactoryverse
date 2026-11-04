@@ -23,7 +23,7 @@ Create Team → Project → Task → Clone Agent → Run Agent → chat reply wi
 
 ## 🎨 IMAGES
 <!-- Centered and resized image -->
-<p align="center"><img src="./Docs/images/Dashboard.jpeg" alt="DashBoard" width="500"></p>
+<p align="center"><img src="./Docs/images/DashBoard.jpeg" alt="DashBoard" width="500"></p>
 <p align="center"><img src="./Docs/images/CloneAgent.jpeg" alt="CLoneAgent" width="500"></p>
 <p align="center"><img src="./Docs/images/tasks.jpeg" alt="tasks" width="500"></p>
 <p align="center"><img src="./Docs/images/TeamProjects.jpeg" alt="TeamProjects" width="500"></p>
