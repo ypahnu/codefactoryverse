@@ -21,6 +21,15 @@ Create Team → Project → Task → Clone Agent → Run Agent → chat reply wi
 - **Lifespan:** Agents have `lifespan_seconds` default 1h (low), `expires_at`, `is_alive()`, heartbeat extends on run, UI shows `alive/expired` + hourglass
 - **Voice (planned):** Meta Muse STT + Cartesia TTS, both keys in `.env`
 
+## 🎨 IMAGES
+<!-- Centered and resized image -->
+<p align="center"><img src="./Docs/images/Dashboard.jpeg" alt="DashBoard" width="500"></p>
+<p align="center"><img src="./Docs/images/CloneAgent.jpeg" alt="CLoneAgent" width="500"></p>
+<p align="center"><img src="./Docs/images/tasks.jpeg" alt="tasks" width="500"></p>
+<p align="center"><img src="./Docs/images/TeamProjects.jpeg" alt="TeamProjects" width="500"></p>
+
+## 🗂️ Project Structure
+
 **Project Structure (short):**
 ```
 app/
@@ -31,12 +40,34 @@ app/
   static/ css/style.css (chat timeline, mention-dropdown, thinking-dots), js/mention.js, js/app.js
 ```
 
+```
+/app/
+├── blueprints          
+├── services            
+├── static/
+│   ├── css/
+│   │   └── style.css       
+│   └── js/
+│       ├── app.js
+|       ├── mention.js
+|       └── voice.js
+├── templates/
+|   ├── base.html           # Base layout with Aurora branding, auth nav & status chips
+|   ├── agents
+|   ├── auth
+|   ├── dashboard
+|   ├── projects
+|   ├── tasks
+|   └── teams
+|
+└── voices
+
 **Detailed Docs:**
 - `Docs/README.md` - Index of all docs
 - `Docs/DATABASE_REPORT.md` + `DATABASE_FULL.json` - DB schema & data
 - `Docs/Agents.md` - Lifespan, Modal sandbox lifecycle, logging as code, thinking icon
 - `Docs/mention.md` - @ mention autocomplete spec (generic, not Joana-specific)
-- `Docs/voice.md` - Voice TTS/STT plan checking `/voice` and `/tts_cartesia`
+- `Docs/voice.md` - Voice TTS/STT plan checking `/voice` and `/tts_cartesia` ( sorry didn't realise that were not supose to use anything then Meta )
 - `Docs/workspace.md` - Workspace/sandbox per project (Option B separate tables: ProjectSandbox + ProjectActivity), fields name/type/tunnel, visible every page
 - `Docs/modal-removal/README.md` + `possibilities.md` - Why modal_app.py removed, variations A/B/C/D, Path A chosen
 - `Docs/architecture.md` - Full architecture (to be created, Path A only)
@@ -55,3 +86,9 @@ MODAL_ENDPOINT_HOST=my-endpoint.us-west.modal.direct (Path A direct, no modal_ap
 **DB kept for testing:** Task 5 has JOANA_BOT + peter, 8+ messages, broadcast verified.
 
 See `Docs/` for full details.
+
+
+## 🛠️ TODO
+ 1. Be able to edit your team super Agent
+ 2. Be able to have multiple sandboxes for project.
+ 3. Change diferent providers of TTS ( sorry I wasn't supose to use anything then Meta, but just readed about it in discord day later. so forget that exist )
