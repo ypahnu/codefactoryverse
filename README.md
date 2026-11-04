@@ -61,6 +61,7 @@ app/
 |   └── teams
 |
 └── voices
+```
 
 **Detailed Docs:**
 - `Docs/README.md` - Index of all docs
