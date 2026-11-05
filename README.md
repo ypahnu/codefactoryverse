@@ -21,6 +21,10 @@ Create Team → Project → Task → Clone Agent → Run Agent → chat reply wi
 - **Lifespan:** Agents have `lifespan_seconds` default 1h (low), `expires_at`, `is_alive()`, heartbeat extends on run, UI shows `alive/expired` + hourglass
 - **Voice (planned):** Meta Muse STT + Cartesia TTS, both keys in `.env`
 
+## ONLINE VERSION TO TEST
+https://ypahnu-codefactoryverse--codefactoryverse-flask-app.us-east.modal.run/
+
+
 ## 🎨 IMAGES
 <!-- Centered and resized image -->
 <p align="center"><img src="./Docs/images/DashBoard.jpeg" alt="DashBoard" width="500"></p>
