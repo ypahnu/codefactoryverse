@@ -211,7 +211,7 @@ Task Context: Title: {task_title}
         user_content = f"""Briefing: {briefing}
 
 Full Prompt / Requirements:
-{full_prompt[:6000] if full_prompt else 'No additional requirements'}
+{full_prompt[:4000] if full_prompt else 'No additional requirements'}
 {chat_section}{sandbox_section}
 Provide:
 1. Short briefing (1-2 sentences) referencing previous chats if relevant
@@ -342,7 +342,7 @@ Provide:
         tool_evidence = []
         content = ""
         for _round in range(4):
-            kwargs = dict(model=model_name, messages=messages, max_tokens=2000, temperature=0.7,
+            kwargs = dict(model=model_name, messages=messages, max_tokens=5000, temperature=0.7,
                           extra_headers=extra_headers if extra_headers else None)
             if tools:
                 kwargs["tools"] = tools
@@ -352,7 +352,7 @@ Provide:
             except TypeError:
                 # Older OpenAI-compatible endpoint without tools support: retry plain
                 resp = client.chat.completions.create(
-                    model=model_name, messages=messages, max_tokens=2000,
+                    model=model_name, messages=messages, max_tokens=5000,
                     temperature=0.7, extra_headers=extra_headers if extra_headers else None)
                 tools = None
             msg = resp.choices[0].message
@@ -375,6 +375,9 @@ Provide:
         if tool_evidence:
             reads_block = "\n## Sandbox Reads (tool calls fulfilled by backend)\n" + "\n".join(tool_evidence) + "\n"
 
+        # Stored log stays lean: input echoes are trimmed (they get re-sent as
+        # context on later runs, so bloated echoes squeeze the reply). The full
+        # LLM response and sandbox reads are always kept whole.
         full_log = f"""# Agent {agent_name} - Real LLM via Modal Endpoint
 
 **Model:** {model_name}
@@ -386,17 +389,12 @@ Provide:
 **Task:** {task_title}
 **Skills:** {skill_str}
 
-## System Prompt
-```
-{system_prompt[:2000]}
-```
-
 ## Briefing Input
-{briefing}
+{briefing[:1000]}
 
-## Full Prompt
+## Full Prompt (trimmed echo)
 ```
-{full_prompt[:4000]}
+{full_prompt[:2000]}
 ```
 
 ## LLM Response (Full)
@@ -407,6 +405,8 @@ Provide:
 - Affinity routing key: task-{task_id}
 - Model: {model_name}
 """
+        if len(full_log) > 15000:
+            full_log = full_log[:15000] + "\n...[stored log trimmed at 15000 chars, LLM response above is complete]...\n"
 
         return {
             "briefing": briefing_out,

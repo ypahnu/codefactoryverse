@@ -24,10 +24,12 @@ def _find_file_paths_in_text(text):
         r'<!--\s*File:\s*(\/workspace\/[^\s\n]+)\s*-->',
         r'//\s*File:\s*(\/workspace\/[^\s\n]+)',
         r'/\*\s*File:\s*(\/workspace\/[^\s\n\*]+)\s*\*/',
+        r'^###\s*(/workspace/[^\s\(\)]+)',
+        r'"remote_path":\s*"(/workspace/[^"]+)"',
     ]
     found = []
     for pat in patterns:
-        for m in re.finditer(pat, text):
+        for m in re.finditer(pat, text, flags=re.MULTILINE):
             p = m.group(1).strip().strip('`"\'`)').replace('-->','').strip()
             found.append(p)
     seen = set()
@@ -38,9 +40,32 @@ def _find_file_paths_in_text(text):
             uniq.append(p)
     return uniq
 
+def _detect_backend_read_path(text_before):
+    """Path from a backend Sandbox Reads header right above the fence, e.g.
+    ### /workspace/index.html (167 chars)  or
+    ### read_file_from_sandbox({"remote_path": "/workspace/index.html"}) -> ...
+    The fence holds that file's known content, so it gets a green panel + Exec."""
+    if not text_before:
+        return None
+    tail = text_before[-400:]
+    # tool-evidence header with explicit remote_path JSON wins (most specific)
+    m = None
+    for mm in re.finditer(r'"remote_path":\s*"(/workspace/[^"]+)"', tail):
+        m = mm
+    if m:
+        return m.group(1)
+    # plain reads header: last ### /workspace/... in the tail
+    for mm in re.finditer(r'^###\s*(/workspace/[^\s\(\)]+)', tail, flags=re.MULTILINE):
+        m = mm
+    if m:
+        return m.group(1).strip()
+    return None
+
+
 def _detect_file_path_explicit(code, text_before, file_paths_from_text, block_idx):
     """Only when code block itself contains # File: /workspace/... - per user: only do div when there's ```html # File: /workspace/contact.html
-    Also handles typo worksapce, worspace, workpace, workpsace -> workspace (user reported # File: /worksapce/item.html)"""
+    Also handles typo worksapce, worspace, workpace, workpsace -> workspace (user reported # File: /worksapce/item.html)
+    Plus backend Sandbox Reads headers (path known even without a marker)."""
     if not code:
         return None
     # Correct typo in code string for file path detection (worksapce -> workspace)
@@ -65,6 +90,10 @@ def _detect_file_path_explicit(code, text_before, file_paths_from_text, block_id
             # Correct typo in returned path
             path = path.replace('/worksapce/', '/workspace/').replace('/worspace/', '/workspace/').replace('/workpace/', '/workspace/').replace('/workpsace/', '/workspace/')
             return path
+    # Backend-known path (Sandbox Reads header right above the fence)
+    backend = _detect_backend_read_path(text_before)
+    if backend:
+        return backend.replace('/worksapce/', '/workspace/').replace('/worspace/', '/workspace/').replace('/workpace/', '/workspace/').replace('/workpsace/', '/workspace/')
     return None
 
 def _detect_file_path_for_block(code, text_before, file_paths_from_text, block_idx, task_id, message_id):
@@ -206,7 +235,7 @@ def _render_text_with_green_code_inside(text, message_id, task_id, team_slug, pr
         file_path = _detect_file_path_explicit(code, block.get("text_before",""), None, global_idx)
         if file_path and file_path.startswith("/workspace/"):
             file_name = file_path.split("/")[-1]
-            code_esc = html_module.escape(code_stripped[:6000])
+            code_esc = html_module.escape(code_stripped[:25000])
             parts.append(f'''
               <div class="code-block-item mb-2" style="background:#0a0f0a; border:1px solid #10b981; border-radius:6px; overflow:hidden; margin:2px 0;">
                 <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 8px; background:rgba(16,185,129,0.15); border-bottom:1px solid #10b981;">
@@ -257,7 +286,7 @@ def render_code_blocks_html(text, message_id, task_id, team_slug, project_slug, 
         # Strip # File: line from code - should not be part of code (user request #1)
         code_clean = _strip_file_marker(block["code"])
         file_name = file_path.split("/")[-1]
-        code_esc = html_module.escape(code_clean[:6000].strip())
+        code_esc = html_module.escape(code_clean[:25000].strip())
         html_parts.append(f'''
           <div class="code-block-item mb-2" style="background:#0a0f0a; border:1px solid #10b981; border-radius:6px; overflow:hidden; margin:2px 0;">
             <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 8px; background:rgba(16,185,129,0.15); border-bottom:1px solid #10b981;">
@@ -431,7 +460,7 @@ def render_full_prompt_collapsible_html(text, message_id, task_id, team_slug, pr
             file_name = path.split("/")[-1]
             # Strip file marker line from code - should not be part of code (user request #1)
             code_clean = _strip_file_marker(fb["code"])
-            code_esc = html_module.escape(code_clean[:6000].strip())
+            code_esc = html_module.escape(code_clean[:25000].strip())
             block_uid = f"file-{message_id}-{fb['global_idx']}"
             html_parts.append(f'''
               <div id="file-panel" class="file-panel mb-2" style="background:#0a0f0a; border:1px solid #10b981; border-radius:6px; overflow:hidden; margin:2px 0;">

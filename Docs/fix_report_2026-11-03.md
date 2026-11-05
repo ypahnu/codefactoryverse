@@ -147,6 +147,42 @@ Pre-existing (not mine, left untouched): `app/static/css/style.css` (container 1
   only; new code blocks only when new/changed code was asked for.
 - Verified: compile clean, `PROBE_OK`, `READSKILL2_OK`, boot 200.
 
+## Update 5 — more reply tokens, leaner logs
+
+- `max_tokens` 2000 → 5000 on both endpoint call sites (`modal_client.py`).
+- Stopped the context squeeze: model input requirements `[:6000]` → `[:4000]`;
+  stored `full_log` no longer echoes the whole system prompt, briefing capped at
+  `[:1000]`, full-prompt echo `[:4000]` → `[:2000]`, whole stored log capped at
+  15000 chars. LLM response + sandbox reads always kept whole. Server `print()`
+  logs and the REQUEST AS CODE panel untouched.
+- Verified: `TOKENS_OK` (captured `max_tokens=5000`, no tools on mock sandbox,
+  stored log lean, no system-prompt echo).
+
+## Update 6 — Sandbox Reads fences now get green panels
+
+- Cause of "no green file panels": the strict explicit-marker rule ignored fences
+  whose path the backend already knew — `## Sandbox Reads` sections
+  (`### /workspace/index.html (167 chars)` + fence, and tool-evidence headers
+  `### read_file_from_sandbox({"remote_path": ...})`). Real data had exactly this.
+- `_detect_backend_read_path()` resolves the fence to the header path above it;
+  wired as fallback in `_detect_file_path_explicit()` (marker rule first, typo
+  fixes kept); `_find_file_paths_in_text()` learned both header formats
+  (multiline). Guard preserved: plain/prose fences stay neutral.
+- Rendering happens at read time (DB stores raw markdown), so old messages gain
+  panels with no migration and no new project needed.
+- Verified: `READSPANEL_OK` (both header formats → green + Exec), `REG_OK`
+  (marker panels, neutral snippets, unclosed-fence recovery), boot 200.
+
+## Update 7 — file panels cut long files at 6000 chars (display only)
+
+- Symptom (task 31, msg 164): panel ended mid-array while DB held the full 9555-char
+  `index.html` ending in `</html>`. Cause: file-panel display caps `[:6000]`;
+  containers already scroll, so caps only hid content. Exec path always wrote full text.
+- Raised file-panel display caps `[:6000]` → `[:25000]` (3 spots); neutral prose
+  snippets unchanged. Verified: Exec would write all 9555 chars with `</html>` tail,
+  panel now contains file end. Reload the page; if the sandbox file itself (via
+  tunnel URL) is short, re-click Exec — it writes the complete file.
+
 ## Update 4 — project page verify-then-show sandbox gating
 
 - `projects/view` now checks DB first, then runs the tunnel check on any DB sandbox
